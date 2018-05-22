@@ -1,11 +1,53 @@
 <!DOCTYPE html>
-<html xmlns : th = "http://www.thymeleaf.org">
+<html>
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="../../static/style.css">
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
 </head>
 <body>
-<h1 th:text="'Hello ' + ${name} + ' !'"> </h1>
-<p>C'est bon ça marche !</p>
+<header>
+    <div class="widthh">
+        <img class="logo" width="150px" height="auto" src="../../static/images/isep.png">
+        <button class="header_button" href="#" >Connexion</button>
+    </div>
+</header>
+    <div class="widthh">
+        <div>
+            <div class="acc_gauche">
+            </div>
+            <div class="acc_droite">
+                <p>lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+            </div>
+        </div>
+        <div class="div_form">
+            <p class="question">Quels sont les métiers qui vous intéressent?</p>
+            <form method="POST" class="form_metier">
+                <select onchange="this.form.submit()" name="metier" class="metier_sel">
+                    <option value="reseau">ingénieur réseau</option>
+                    <option value="BDD">ingénieur en base de donnée</option>
+                    <option value="web">ingénieur webdesign</option>
+                </select>
+            </form>
+        </div>
+        <div class="par1">
+            <div class="acc_gau">
+                <h3>Métier</h3>
+                <p class="par1_txt">ed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labo</p>
+            </div>
+            <div class="acc_dro">
+                <p class="parcours">parcours1</p>
+                <P class="parcours">parcours2</P>
+                <p class="parcours">parcours3</P>
+            </div>
+        </div>
+    </div>
+
+<footer>
+    <div class="widthh">
+        <a href="https://www.isep.fr"> www.isep.fr</a>
+        <p class="txt_footer">28 rue Notre-Dame des Champs - 75006 Paris</br> 10, rue de Vanves. 92139 Issy-les -Moulineaux</br>Standard: +33 49 54 52 00 6Informations : +33 (0)1 49 54 52 43 -info@isep.fr</p>
+    </div>
+</footer>
 </body>
 </html>
