@@ -1,5 +1,10 @@
 package com.project.capvi.controllers;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.project.capvi.model.ConnexionBdd;
 import com.project.capvi.model.User;
 import com.project.capvi.model.UserService;
 
@@ -26,6 +32,9 @@ public class PageController {
 	
 	@RequestMapping(value = "/index", method = RequestMethod.GET)
 	public String index() {
+		
+		Connection co = ConnexionBdd.getInstance().conn;
+
 		return "pages/index";
 		
 	}
