@@ -24,14 +24,20 @@ public class PageController {
 	}
 	
 	
+	@RequestMapping(value = "/index", method = RequestMethod.GET)
+	public String index() {
+		return "pages/index";
+		
+	}
 	
+
 	
 //	@Autowired
 	private UserService userService;
 
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String showLoginForm() {
-		return "login";
+		return "pages/login";
 	}
 	
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
@@ -39,7 +45,7 @@ public class PageController {
 		User user = userService.loginCustomer(userId, password);
 		if (user==null) {
 			model.addAttribute("loginError", "Error logging in. Please try again");
-			return "login";
+			return "pages/login";
 		}
 		session.setAttribute("loggedInUser", user);
 		return "redirect:/";
