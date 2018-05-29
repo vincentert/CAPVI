@@ -1,15 +1,15 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" type="text/css" href="../../static/style.css">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/style.css}">
     <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
 </head>
 <body>
 <header>
     <div class="widthh">
-        <img class="logo" width="150px" height="auto" src="../../static/images/isep.png">
-        <button class="header_button" href="#" >Connexion</button>
+        <img class="logo" width="150px" height="auto" th:src="@{images/isep.png}">
+        <button class="header_button" href="login.html" >Connexion</button>
     </div>
 </header>
     <div class="widthh">
