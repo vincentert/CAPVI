@@ -7,6 +7,22 @@ body{
 color orange : #FFA100
 */
 
+/* balise de bases */ 
+
+h1{
+	text-align: center;
+	width: auto;
+}
+
+
+h1 p{
+	color: #FFA100;
+	text-decoration: none;
+	border-bottom: solid 2px #0061A1;
+	width: auto;
+}
+/* -------------- */
+
 .widthh{
     width: 950px;
     margin-left: auto;
@@ -16,12 +32,15 @@ color orange : #FFA100
 header{
     height: 100px;
     background-color: #e5E5E5E5;
-
+	
 }
+
+/* page d'accueil */
 
 .logo{
     margin-top: 20px;
 }
+
 
 .acc_gauche {
     display: inline-block;
@@ -128,10 +147,51 @@ h3{
     position: relative;
 }
 
+/* page de connexion */
+
+.form_co {
+	text-align: center;
+}
+
+.div_form label {
+	font-size: 23px;
+	font-family: 'lato', 'sans-serif';
+    color: #0061A1;
+    padding-top: 23px;
+    display: inline-block;
+}
+
+.div_form input {
+	background: #0061A1;
+    border: #0061A1 solid 1px;
+    border-radius: 10px;
+    color: #fff;
+    font-size: 18px;
+    padding: 2px 10px;
+    margin-left: 150px;
+}
+
+.connexion button {
+    margin-top: 30px;
+    background-color: #0061A1;
+    border: #0061A1 solid 1px;
+    border-radius: 15px;
+    color: #fff;
+    font-size: 1.8em;
+    padding: 5px 20px;
+}
+
+
+
+/* footer */
+
 footer {
     height: 230px;
     background-color: #0061A1;
     margin-top: 20px;
+    bottom: 0;
+    display: block;
+    width: 100%;
 }
 
 a {
