@@ -66,6 +66,16 @@ public class PageController {
 	public String showchoixquestForm() {
 		return "pages/choixquestionnaire";
 	}
+	
+	@RequestMapping(value = "/questmodul", method = RequestMethod.GET)
+	public String showquestmodulForm() {
+		return "pages/questmodul";
+	}
+	
+	@RequestMapping(value = "/questprereq", method = RequestMethod.GET)
+	public String showquestprereqForm() {
+		return "pages/questprereq";
+	}
 
 }
 
