@@ -1,0 +1,151 @@
+body{
+    font-family: 'lato', 'sans-serif';
+    margin: 0;
+}
+
+/*
+color orange : #FFA100
+*/
+
+.widthh{
+    width: 950px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+header{
+    height: 100px;
+    background-color: #e5E5E5E5;
+
+}
+
+.logo{
+    margin-top: 20px;
+}
+
+.acc_gauche {
+    display: inline-block;
+    width: 49%;
+    background-image: url("images/Image_Pres.jpg");
+    background-size: auto 100%;
+    background-repeat: no-repeat;
+    height: 250px;
+    width: 470px;
+    margin-top: 30px;
+}
+
+.acc_droite {
+    display: inline-block;
+    width: 45%;
+    text-align: justify;
+    color: #0061A1;
+    position: relative;
+    bottom: 53px;
+    margin-left: 10px;
+}
+
+.header_button{
+    margin-top: 34px;
+    float: right;
+    background-color: #0061A1;
+    border: #0061A1 solid 1px;
+    border-radius: 15px;
+    color: #fff;
+    font-size: 1em;
+    padding: 2px 10px;
+}
+
+.block1{
+    border: #0061A1 solid 2px;
+    border-radius: 10px;
+    padding: 30px;
+}
+
+.div_form{
+    background: #e5E5E5E5;
+    border-left: solid  #FFA100 8px;
+    height: 70px;
+    margin-top: 20px;
+}
+
+.question {
+    padding-top: 20px;
+    color: #0061A1;
+    display: inline-block;
+    margin: 0;
+    text-align: center;
+    font-size: 24px;
+    margin-left: 20px;
+}
+
+.form_metier{
+    float: right;
+    display: inline-block;
+    margin-right: 100px;
+    padding-top: 20px;
+}
+
+.metier_sel{
+    background: #0061A1;
+    border: #0061A1 solid 1px;
+    border-radius: 10px;
+    color: #fff;
+    font-size: 18px;
+    padding: 2px 10px;
+}
+.par1 {
+    width: auto;
+    text-align: justify;
+    margin-top: 20px;
+}
+
+.acc_gau{
+    display: inline-block;
+    width: 46%;
+    padding-right: 10px;
+}
+
+h3{
+    text-align: center;
+    border-bottom: solid #FFA100 2px;
+    font-size: 23px;
+    color: #0061A1;
+}
+.acc_dro{
+    display: inline-block;
+    width: 46%;
+    padding-left: 10px;
+}
+
+.parcours{
+    background-color: #FFA100;
+    width: 100%;
+    color: #fff;
+    font-size: 23px;
+    margin: 10px;
+    padding: 8px;
+    bottom: 50px;
+    position: relative;
+}
+
+footer {
+    height: 230px;
+    background-color: #0061A1;
+    margin-top: 20px;
+}
+
+a {
+    color: #fff;
+    text-align: center;
+    font-size: 60px;
+    display: block;
+    padding-top: 40px;
+    text-decoration: none;
+}
+
+.txt_footer{
+    color: #fff;
+    font-size: 16px;
+    text-align: center;
+
+}
