@@ -62,6 +62,10 @@ public class PageController {
 		return "redirect:/";
 	}
 
+	@RequestMapping(value = "/choixquestionnaire", method = RequestMethod.GET)
+	public String showchoixquestForm() {
+		return "pages/choixquestionnaire";
+	}
 
 }
 

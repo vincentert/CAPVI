@@ -1,23 +1,33 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="ISO-8859-1">
-<title>Insert title here</title>
+	<meta charset="ISO-8859-1">
+	<title>Connexion</title>
+	<link rel="stylesheet" type="text/css" th:href="@{/style.css}">
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
 </head>
 <body>
-<div class="container">
-		<div class="form-group form">
-			<form action='login' method="post">
-				<div>
+<header>
+    <div class="widthh">
+        <img class="logo" width="150px" height="auto" th:src="@{images/isep.png}">
+        <a class="header_button" th:href="@{/login}" >Connexion</a>
+    </div>
+</header>
+<div class="widthh">
+
+		<h1><p>Page de Connexion</p></h1>
+		<div class="form_co">
+			<form class="connexion" action='login' method="post">
+				<div class="div_form">
 					<label> USERNAME :</label> <input type="text" id="userId"
 						name="userId" placeholder="user name" class="form-control">
 				</div>
-				<div>
+				<div class="div_form">
 					<label> PASSWORD :</label> <input type="password" id="password"
 						name="password" placeholder="password" class="form-control">
 
 				</div>
-				<button id="loginButton" class="form-control">Login</button>
+				<button id="loginButton">Login</button>
 
 
 			</form>
@@ -26,5 +36,11 @@
 
 
 	</div>
+<footer>
+    <div class="widthh">
+        <a href="https://www.isep.fr"> www.isep.fr</a>
+        <p class="txt_footer">28 rue Notre-Dame des Champs - 75006 Paris</br> 10, rue de Vanves. 92139 Issy-les -Moulineaux</br>Standard: +33 49 54 52 00 6Informations : +33 (0)1 49 54 52 43 -info@isep.fr</p>
+    </div>
+</footer>
 </body>
 </html>
