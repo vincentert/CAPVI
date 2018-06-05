@@ -25,42 +25,62 @@ import com.project.capvi.model.user.UserService;
 
 @Controller
 public class PageController {
-	
+
 	@Autowired
 	private UserService userService;
 	private JobService jobService;
-	
+
 	@GetMapping("/")
 	public String home(@RequestParam(required = false, defaultValue="World") String name, ModelMap modelMap) {
 		modelMap.put("name",name);
 		return "pages/index";
 	}
-	
-	
+
+
 	@RequestMapping(value = "/index", method = RequestMethod.GET)
 	public String index() {
-		
+
 		Connection co = ConnexionBdd.getInstance().conn;
 
 		return "pages/index";
-		
+
 	}
-	
+
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
-	public String showLoginForm() {
+	public String showLoginForm(HttpSession session) {
+		if(isAlreadyConnected(session)) {
+			
+			return "pages/index";
+		}
 		return "pages/login";
 	}
-	
+
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public String verifyLogin(@RequestParam String userId, @RequestParam String password, HttpSession session, Model model) {
+		if(isAlreadyConnected(session)) {
+			return "pages/index";
+		}
 		User user = userService.loginCustomer(userId, password);
 		if (user==null) {
 			model.addAttribute("loginError", "Error logging in. Please try again");
 			return "pages/login";
 		}
-		session.setAttribute("loggedInUser", user);
-		return "redirect:/";
+		session.setAttribute("loggedInUser", user.getID());
+		return "pages/index";
 	}
+
+	public boolean isAlreadyConnected(HttpSession session) {
+
+		if(session.getAttribute("loggedInUser")!=null) {
+			System.out.println("already connected");
+			return true;
+		}
+
+		return false;
+
+	}
+
+
 
 	@RequestMapping(value = "/choixquestionnaire", method = RequestMethod.GET)
 	public String showchoixquestForm() {
