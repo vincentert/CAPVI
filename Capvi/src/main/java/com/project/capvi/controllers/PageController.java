@@ -18,8 +18,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.project.capvi.model.ConnexionBdd;
-import com.project.capvi.model.User;
-import com.project.capvi.model.UserService;
+import com.project.capvi.model.job.JobService;
+import com.project.capvi.model.user.User;
+import com.project.capvi.model.user.UserService;
 
 
 @Controller
@@ -27,6 +28,7 @@ public class PageController {
 	
 	@Autowired
 	private UserService userService;
+	private JobService jobService;
 	
 	@GetMapping("/")
 	public String home(@RequestParam(required = false, defaultValue="World") String name, ModelMap modelMap) {
