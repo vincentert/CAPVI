@@ -1,9 +1,10 @@
 package com.project.capvi.controllers;
 
-import java.sql.Connection;
+import java.sql.Connection; 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
@@ -23,6 +24,10 @@ import com.project.capvi.model.UserService;
 
 @Controller
 public class PageController {
+	
+	@Autowired
+	private UserService userService;
+	
 	@GetMapping("/")
 	public String home(@RequestParam(required = false, defaultValue="World") String name, ModelMap modelMap) {
 		modelMap.put("name",name);
@@ -39,11 +44,6 @@ public class PageController {
 		
 	}
 	
-
-	
-//	@Autowired
-	private UserService userService;
-
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String showLoginForm() {
 		return "pages/login";
