@@ -25,7 +25,7 @@ import com.project.capvi.model.user.UserService;
 
 @Controller
 public class PageController {
-	
+	public static final String LOGGEDUSER="loggedInUser";
 	@Autowired
 	private UserService userService;
 	private JobService jobService;
@@ -50,6 +50,17 @@ public class PageController {
 	public String showLoginForm() {
 		return "pages/login";
 	}
+	@RequestMapping(value = "/AccueilAdmin", method = RequestMethod.GET)
+	public String verifAdmin(HttpSession session) {
+		User user = (User) session.getAttribute(LOGGEDUSER);
+		if(user!=null&&user.isAdmin()) {
+			return "pages/AccueilAdmin";
+		}else {
+			System.out.println("Acces refusé");
+			return "redirect:/";
+		}
+		
+	}
 	
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public String verifyLogin(@RequestParam String userId, @RequestParam String password, HttpSession session, Model model) {
@@ -58,8 +69,11 @@ public class PageController {
 			model.addAttribute("loginError", "Error logging in. Please try again");
 			return "pages/login";
 		}
-		session.setAttribute("loggedInUser", user.getID());
+		session.setAttribute(LOGGEDUSER, user);
 		System.out.println("Connected");
+		if(user.isAdmin()) {
+			return "redirect:/AccueilAdmin";
+		}
 		return "redirect:/";
 	}
 
