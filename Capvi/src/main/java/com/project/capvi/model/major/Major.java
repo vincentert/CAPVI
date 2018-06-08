@@ -11,7 +11,7 @@ import javax.persistence.Id;
 public class Major {
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	//@GeneratedValue(strategy=GenerationType.AUTO)
 	private int ID;
 	private String name;
 	private String description;
@@ -21,10 +21,10 @@ public class Major {
 		
 	}
 	
-public Major(int iD, String name, String description) {
+public Major( int id,String name, String description) {
 		
 		super();
-		ID = iD;
+		this.ID=id;
 		this.name = name;
 		this.description = description;
 		

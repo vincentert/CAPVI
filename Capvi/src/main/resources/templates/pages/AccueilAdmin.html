@@ -6,5 +6,6 @@
 </head>
 <body>
  Bienvenue <p  th:text="${session.loggedInUser.getName()}" th:unless="${session == null}"/>
+ <a class="header_button" th:href="@{/addMajor}" >Ajouter un parcour</a>
 </body>
 </html>

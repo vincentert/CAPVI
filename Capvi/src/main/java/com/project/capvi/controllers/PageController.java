@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.project.capvi.model.ConnexionBdd;
 import com.project.capvi.model.job.JobService;
+import com.project.capvi.model.major.MajorService;
 import com.project.capvi.model.user.User;
 import com.project.capvi.model.user.UserService;
 
@@ -28,8 +29,10 @@ public class PageController {
 	public static final String LOGGEDUSER="loggedInUser";
 	@Autowired
 	private UserService userService;
+	@Autowired
 	private JobService jobService;
-	
+	@Autowired
+	private MajorService majorService;
 	@GetMapping("/")
 	public String home(@RequestParam(required = false, defaultValue="World") String name, ModelMap modelMap) {
 		modelMap.put("name",name);
@@ -43,6 +46,30 @@ public class PageController {
 		Connection co = ConnexionBdd.getInstance().conn;
 
 		return "pages/index";
+		
+	}
+	
+	@RequestMapping(value = "/addMajor", method = RequestMethod.GET)
+	public String addMajorVerifAdmin(HttpSession session) {
+		User user = (User) session.getAttribute(LOGGEDUSER);
+		if(user!=null&&user.isAdmin()) {
+			return "pages/addMajor";
+		}else {
+			System.out.println("Acces refusé");
+			return "redirect:/";
+		}
+		
+	}
+	
+	
+	@RequestMapping(value = "/addMajor", method = RequestMethod.POST)
+	public String addMajor(HttpSession session,@RequestParam String name, @RequestParam String description) {
+		User user = (User) session.getAttribute(LOGGEDUSER);
+		if(user==null||!user.isAdmin()) {
+			return "redirect:/";
+		}
+		majorService.addMajors(name, description);
+		return "pages/addMajor";
 		
 	}
 	
