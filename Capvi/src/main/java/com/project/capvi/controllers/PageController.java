@@ -58,7 +58,8 @@ public class PageController {
 			model.addAttribute("loginError", "Error logging in. Please try again");
 			return "pages/login";
 		}
-		session.setAttribute("loggedInUser", user);
+		session.setAttribute("loggedInUser", user.getID());
+		System.out.println("Connected");
 		return "redirect:/";
 	}
 

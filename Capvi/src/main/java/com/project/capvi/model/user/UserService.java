@@ -17,7 +17,12 @@ public class UserService {
 	}
 	
 	public User loginCustomer(String login, String password) {	
-		
-		return new User();
+			List<User> users = getAllUsers();
+			for(User user:users) {
+				if(user.getName().equals(login)&&user.getPassword().equals(password)) {
+					return user;
+				}
+			}
+		return null;
 	}
 }
