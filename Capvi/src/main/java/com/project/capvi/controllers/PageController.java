@@ -34,7 +34,10 @@ public class PageController {
 	@Autowired
 	private MajorService majorService;
 	@GetMapping("/")
-	public String home(@RequestParam(required = false, defaultValue="World") String name, ModelMap modelMap) {
+	public String home(@RequestParam(required = false, defaultValue="World") String name, ModelMap modelMap, Model model) {
+		
+		
+		model.addAttribute("message", jobService.getAllJobsTabString());
 		modelMap.put("name",name);
 		return "pages/index";
 	}

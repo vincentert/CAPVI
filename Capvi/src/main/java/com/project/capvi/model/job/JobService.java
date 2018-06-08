@@ -15,6 +15,17 @@ public class JobService {
 		List<Job> jobs = (List<Job>) jobRepository.findAll();
 		return jobs;
 	}
+	public String[] getAllJobsTabString() {
+		List<Job> jobs = (List<Job>) jobRepository.findAll();
+		String[] jobsTab=new String[jobs.size()];
+		int i=0;
+		for(Job j:jobs) {
+			jobsTab[i]=j.getName();
+			i++;	
+		}
+		
+		return  jobsTab;
+	}
 	
 	
 }

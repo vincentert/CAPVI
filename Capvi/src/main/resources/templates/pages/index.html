@@ -5,6 +5,9 @@
     	<title>Accueil</title>
     <link rel="stylesheet" type="text/css" th:href="@{/style.css}">
     <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+  	<script type="text/javascript" th:src="@{/script.js}">
+  	</script>
+  	
 </head>
 <body>
 <header>
@@ -25,11 +28,12 @@
         <div class="div_form">
             <p class="question">Quels sont les métiers qui vous intéressent?</p>
             <form method="POST" class="form_metier">
-                <select onchange="this.form.submit()" name="metier" class="metier_sel">
-                    <option value="reseau">ingénieur réseau</option>
-                    <option value="BDD">ingénieur en base de donnée</option>
-                    <option value="web">ingénieur webdesign</option>
-                </select>
+<!--                 <select onchange="this.form.submit()" name="metier" class="metier_sel"> -->
+<!--                     <option value="reseau">ingénieur réseau</option> -->
+<!--                     <option value="BDD">ingénieur en base de donnée</option> -->
+<!--                     <option value="web">ingénieur webdesign</option> -->
+<!--                 </select> -->
+	<input id="metier" type="text" name="metier" placeholder="Nom de metier" class="metier_sel">
             </form>
         </div>
         <div class="par1">
@@ -52,4 +56,17 @@
     </div>
 </footer>
 </body>
+<script th:inline="javascript">
+/*<![CDATA[*/
+    
+
+    var username = /*[[${message}]]*/ 'default';
+    myFunction(username);
+    //autocomplete(document.getElementById("book"),username);
+    
+/*]]>*/
+</script>
+	 
 </html>
+
+
