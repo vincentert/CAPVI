@@ -104,6 +104,10 @@ public class PageController {
 		if(user.isAdmin()) {
 			return "redirect:/AccueilAdmin";
 		}
+		else if (!user.isAdmin()) {
+			return "redirect:/choixquestionnaire";
+
+		}
 		return "redirect:/";
 	}
 
