@@ -1,6 +1,7 @@
 package com.project.capvi.model.job;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -38,6 +39,10 @@ public class JobService {
 		}
 		
 		return  jobsTab;
+	}
+	
+	public String getName(int i) {
+		return jobRepository.findById(i).get().getName();
 	}
 	
 	

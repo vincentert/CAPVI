@@ -29,6 +29,7 @@
             <p class="question">Quels sont les métiers qui vous intéressent?</p>
             <form method="POST" class="form_metier" >
                 <select onchange="this.form.submit()" name="metier" class="metier_sel">
+                   <option th:text="${metier_preselect}"></option>
                    <option th:each="job : ${messages}"th:value="${job[1]}" th:text="${job[0]}"></option>
                 </select>
 

@@ -47,21 +47,11 @@ public class PageController {
 	@RequestMapping(value = "/", method = RequestMethod.POST)
 	public String homepostform(Model model, @RequestParam String metier) {
 		model.addAttribute("majors",  job_majorService.getMajorLinkedToJob(metier));
+		model.addAttribute("metier_preselect", jobService.getName(Integer.parseInt(metier)));
 		model.addAttribute("messages", jobService.getAllJobsTabStringID());
 		model.addAttribute("message", jobService.getAllJobsTabString());
 		return "pages/index";
 	};
-	
-	
-	
-	@RequestMapping(value = "/index", method = RequestMethod.GET)
-	public String index() {
-		
-		Connection co = ConnexionBdd.getInstance().conn;
-
-		return "pages/index";
-		
-	}
 	
 	@RequestMapping(value = "/addMajor", method = RequestMethod.GET)
 	public String addMajorVerifAdmin(HttpSession session) {
