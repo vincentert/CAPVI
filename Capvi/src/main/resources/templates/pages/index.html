@@ -27,13 +27,12 @@
         </div>
         <div class="div_form">
             <p class="question">Quels sont les métiers qui vous intéressent?</p>
-            <form method="POST" class="form_metier">
-<!--                 <select onchange="this.form.submit()" name="metier" class="metier_sel"> -->
-<!--                     <option value="reseau">ingénieur réseau</option> -->
-<!--                     <option value="BDD">ingénieur en base de donnée</option> -->
-<!--                     <option value="web">ingénieur webdesign</option> -->
-<!--                 </select> -->
-	<input id="metier" type="text" name="metier" placeholder="Nom de metier" class="metier_sel">
+            <form method="POST" class="form_metier" >
+                <select onchange="this.form.submit()" name="metier" class="metier_sel">
+                   <option th:each="job : ${messages}"th:value="${job[1]}" th:text="${job[0]}"></option>
+                </select>
+
+<!-- 	<input id="metier" type="text" name="metier" placeholder="Nom de metier" class="metier_sel"> -->
             </form>
         </div>
         <div class="par1">
@@ -42,9 +41,7 @@
                 <p class="par1_txt">ed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labo</p>
             </div>
             <div class="acc_dro">
-                <p class="parcours">parcours1</p>
-                <P class="parcours">parcours2</P>
-                <p class="parcours">parcours3</P>
+                <p class="parcours" th:each="major : ${majors}" th:text="${major}"></p>
             </div>
         </div>
     </div>
@@ -56,16 +53,16 @@
     </div>
 </footer>
 </body>
-<script th:inline="javascript">
-/*<![CDATA[*/
+<!-- <script th:inline="javascript"> -->
+// /*<![CDATA[*/
     
 
-    var username = /*[[${message}]]*/ 'default';
-    myFunction(username);
-    //autocomplete(document.getElementById("book"),username);
+//     var username = /*[[${message}]]*/ 'default';
+//     myFunction(username);
+//     //autocomplete(document.getElementById("book"),username);
     
-/*]]>*/
-</script>
+// /*]]>*/
+<!-- </script> -->
 	 
 </html>
 

@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.project.capvi.model.ConnexionBdd;
 import com.project.capvi.model.job.JobService;
+import com.project.capvi.model.job_major.Job_MajorService;
 import com.project.capvi.model.major.MajorService;
 import com.project.capvi.model.user.User;
 import com.project.capvi.model.user.UserService;
@@ -33,14 +34,24 @@ public class PageController {
 	private JobService jobService;
 	@Autowired
 	private MajorService majorService;
+	@Autowired
+	private Job_MajorService job_majorService;
 	@GetMapping("/")
-	public String home(@RequestParam(required = false, defaultValue="World") String name, ModelMap modelMap, Model model) {
-		
-		
+	@RequestMapping(value = "/", method = RequestMethod.GET)
+	public String home(Model model) {
+		model.addAttribute("messages", jobService.getAllJobsTabStringID());
 		model.addAttribute("message", jobService.getAllJobsTabString());
-		modelMap.put("name",name);
 		return "pages/index";
-	}
+	};
+	
+	@RequestMapping(value = "/", method = RequestMethod.POST)
+	public String homepostform(Model model, @RequestParam String metier) {
+		model.addAttribute("majors",  job_majorService.getMajorLinkedToJob(metier));
+		model.addAttribute("messages", jobService.getAllJobsTabStringID());
+		model.addAttribute("message", jobService.getAllJobsTabString());
+		return "pages/index";
+	};
+	
 	
 	
 	@RequestMapping(value = "/index", method = RequestMethod.GET)
