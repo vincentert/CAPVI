@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<p th:text="${module.getName()}"/>
+	<div th:each="concept : ${conceptsBelong}" th:text="${concept.getName()}"></div>
+	
+	<form action="modifyModule3" method="post">
+	<input th:each="conceptA : ${conceptsBelong}" th:text="${conceptA.getName()}" type="checkbox" th:value="${conceptA.getID()}" name="toDelete"/>
+	<input type="hidden" th:value="${module.getID()}" name="moduleSelected"/>
+	<input type="submit" value="Supprimer"/>
+	</form>
+	
+	
+	
+	<p>Liste des concepts qui ne sont pas rattachés au module</p>
+	<form action="modifyModule2" method="post">
+	<input th:each="conceptNB : ${conceptsNotBelong}" th:text="${conceptNB.getName()}" type="checkbox" th:value="${conceptNB.getID()}" name="toModify"/>
+	<input type="hidden" th:value="${module.getID()}" name="moduleSelected"/>
+	<input type="submit" value="Ajouter"/>
+	</form>
+</body>
+</html>

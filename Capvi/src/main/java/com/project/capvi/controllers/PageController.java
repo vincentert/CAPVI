@@ -23,6 +23,7 @@ import com.project.capvi.model.job_major.Job_MajorService;
 import com.project.capvi.model.major.Major;
 import com.project.capvi.model.major.MajorService;
 import com.project.capvi.model.module.ModuleService;
+import com.project.capvi.model.module_concept.Module_ConceptService;
 import com.project.capvi.model.module_major.Module_MajorService;
 import com.project.capvi.model.user.User;
 import com.project.capvi.model.user.UserService;
@@ -41,6 +42,8 @@ public class PageController {
 	private Job_MajorService job_majorService;
 	@Autowired
 	private ModuleService moduleService;
+	@Autowired
+	private Module_ConceptService module_conceptService;
 	@Autowired
 	private Module_MajorService module_majorService;
 	@GetMapping("/")
@@ -72,6 +75,17 @@ public class PageController {
 		}
 		
 	}
+	@RequestMapping(value = "/addModule", method = RequestMethod.GET)
+	public String addModuleVerifAdmin(HttpSession session) {
+		User user = (User) session.getAttribute(LOGGEDUSER);
+		if(user!=null&&user.isAdmin()) {
+			return "pages/addModule";
+		}else {
+			System.out.println("Acces refusé");
+			return "redirect:/";
+		}
+		
+	}
 	
 	
 	@RequestMapping(value = "/addMajor", method = RequestMethod.POST)
@@ -81,8 +95,18 @@ public class PageController {
 			return "redirect:/";
 		}
 		majorService.addMajors(name, description);
-		return "pages/addMajor";
+		return "redirect:/AccueilAdmin";
 		
+	}
+	
+	@RequestMapping(value = "/addModule", method = RequestMethod.POST)
+	public String addModule(HttpSession session,@RequestParam String name, @RequestParam String description) {
+		User user = (User) session.getAttribute(LOGGEDUSER);
+		if(user==null||!user.isAdmin()) {
+			return "redirect:/";
+		}
+		moduleService.addModule(name, description);
+		return "redirect:/AccueilAdmin";	
 	}
 	
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
@@ -161,11 +185,33 @@ public class PageController {
 		model.addAttribute("modulesNotBelong", module_majorService.getModulesNotBelong(majorSelected));
 		return "pages/modifyMajor";
 	}
-//	@RequestMapping(value = "/modifyMajor", method = RequestMethod.POST)
-//	public String gettModifyMajor(@RequestParam String majorSelected, Model model) {
-//		model.addAttribute("major", majorSelected);
-//		return "pages/modifyMajor";
-//	}
+	
+	@RequestMapping(value = "/modifyModule", method = RequestMethod.POST)
+	public String postModifyModule(@RequestParam int moduleSelected, Model model ) {
+		model.addAttribute("module", moduleService.getModuleById(moduleSelected));
+		model.addAttribute("conceptsBelong",module_conceptService.getConceptsBelong(moduleSelected) );
+		model.addAttribute("conceptsNotBelong", module_conceptService.getConceptsNotBelong(moduleSelected));
+		return "pages/modifyModule";   
+	}
+	@RequestMapping(value = "/modifyModule2", method = RequestMethod.POST)
+	public String postModifyModule2(@RequestParam int moduleSelected, Model model,@RequestParam int[] toModify) {
+		
+		module_conceptService.join(toModify, moduleSelected);
+		model.addAttribute("module", moduleService.getModuleById(moduleSelected));
+		model.addAttribute("conceptsBelong",module_conceptService.getConceptsBelong(moduleSelected) );
+		model.addAttribute("conceptsNotBelong", module_conceptService.getConceptsNotBelong(moduleSelected));
+		return "pages/modifyModule";   
+	}
+	@RequestMapping(value = "/modifyModule3", method = RequestMethod.POST)
+	public String postModifyModule3(@RequestParam int moduleSelected, Model model,@RequestParam int[] toDelete) {
+	
+		module_conceptService.delete(toDelete, moduleSelected);
+		model.addAttribute("module", moduleService.getModuleById(moduleSelected));
+		model.addAttribute("conceptsBelong",module_conceptService.getConceptsBelong(moduleSelected) );
+		model.addAttribute("conceptsNotBelong", module_conceptService.getConceptsNotBelong(moduleSelected));
+		return "pages/modifyModule";   
+	}
+
 	
 	
 	

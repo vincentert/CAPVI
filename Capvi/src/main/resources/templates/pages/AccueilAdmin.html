@@ -17,5 +17,14 @@
  
  
  <a class="header_button" th:href="@{/addMajor}" >Ajouter un parcour</a>
+ 
+ <form  action="modifyModule" method="post" th:each="module : ${session.modules}"  >
+ 
+ 	<input type="hidden" th:value="${module.getID()}" name="moduleSelected"/>
+ 	<input type="submit" th:value="${module.getName()}"/>
+ 
+ </form>
+ <a class="header_button" th:href="@{/addModule}" >Ajouter un module</a>
+ 
 </body>
 </html>
