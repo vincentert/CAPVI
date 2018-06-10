@@ -46,6 +46,7 @@ public class PageController {
 	@GetMapping("/")
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Model model) {
+		model.addAttribute("metier_preselect", "Choisissez un metier");
 		model.addAttribute("messages", jobService.getAllJobsTabStringID());
 		model.addAttribute("message", jobService.getAllJobsTabString());
 		return "pages/index";
