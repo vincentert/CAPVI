@@ -1,6 +1,8 @@
 package com.project.capvi.model.major;
 
 
+import java.io.Serializable;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -8,7 +10,11 @@ import javax.persistence.Id;
 
 
 @Entity
-public class Major {
+public class Major implements Serializable {
+
+	/**
+	 * 
+	 */
 
 	@Id
 	//@GeneratedValue(strategy=GenerationType.AUTO)

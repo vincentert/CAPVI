@@ -20,7 +20,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.project.capvi.model.ConnexionBdd;
 import com.project.capvi.model.job.JobService;
 import com.project.capvi.model.job_major.Job_MajorService;
+import com.project.capvi.model.major.Major;
 import com.project.capvi.model.major.MajorService;
+import com.project.capvi.model.module.ModuleService;
+import com.project.capvi.model.module_major.Module_MajorService;
 import com.project.capvi.model.user.User;
 import com.project.capvi.model.user.UserService;
 
@@ -36,6 +39,10 @@ public class PageController {
 	private MajorService majorService;
 	@Autowired
 	private Job_MajorService job_majorService;
+	@Autowired
+	private ModuleService moduleService;
+	@Autowired
+	private Module_MajorService module_majorService;
 	@GetMapping("/")
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Model model) {
@@ -85,6 +92,8 @@ public class PageController {
 	public String verifAdmin(HttpSession session) {
 		User user = (User) session.getAttribute(LOGGEDUSER);
 		if(user!=null&&user.isAdmin()) {
+			session.setAttribute("majors", majorService.getAllMajors());
+			session.setAttribute("modules", moduleService.getAllModules());
 			return "pages/AccueilAdmin";
 		}else {
 			System.out.println("Acces refusé");
@@ -126,6 +135,39 @@ public class PageController {
 	public String showquestprereqForm() {
 		return "pages/questprereq";
 	}
+	@RequestMapping(value = "/modifyMajor", method = RequestMethod.POST)
+	public String postModifyMajor(@RequestParam int majorSelected, Model model) {
+		model.addAttribute("major", majorService.getMajorById(majorSelected));
+		model.addAttribute("modulesBelong",module_majorService.getModulesBelong(majorSelected) );
+		model.addAttribute("modulesNotBelong", module_majorService.getModulesNotBelong(majorSelected));
+		return "pages/modifyMajor";
+	}
+	@RequestMapping(value = "/modifyMajor2", method = RequestMethod.POST)
+	public String postModifyMajor2(@RequestParam int majorSelected, Model model,@RequestParam int[] toModify ) {
+		
+		module_majorService.join(toModify, majorSelected);
+		model.addAttribute("major", majorService.getMajorById(majorSelected));
+		model.addAttribute("modulesBelong",module_majorService.getModulesBelong(majorSelected) );
+		model.addAttribute("modulesNotBelong", module_majorService.getModulesNotBelong(majorSelected));
+		return "pages/modifyMajor";
+	}
+	@RequestMapping(value = "/modifyMajor3", method = RequestMethod.POST)
+	public String postModifyMajor3(@RequestParam int majorSelected, Model model,@RequestParam int[] toDelete ) {
+		
+		module_majorService.delete(toDelete, majorSelected);
+		model.addAttribute("major", majorService.getMajorById(majorSelected));
+		model.addAttribute("modulesBelong",module_majorService.getModulesBelong(majorSelected) );
+		model.addAttribute("modulesNotBelong", module_majorService.getModulesNotBelong(majorSelected));
+		return "pages/modifyMajor";
+	}
+//	@RequestMapping(value = "/modifyMajor", method = RequestMethod.POST)
+//	public String gettModifyMajor(@RequestParam String majorSelected, Model model) {
+//		model.addAttribute("major", majorSelected);
+//		return "pages/modifyMajor";
+//	}
+	
+	
+	
 
 }
 
