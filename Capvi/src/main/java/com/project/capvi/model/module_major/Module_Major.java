@@ -9,7 +9,7 @@ import javax.persistence.Id;
 public class Module_Major {
 	
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	//@GeneratedValue(strategy=GenerationType.AUTO)
 	private int ID;
 	private int ID_module;
 	private int ID_major;

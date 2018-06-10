@@ -55,8 +55,21 @@ public class Module_MajorService {
 	}
 	
 	public void join(int[] modulesID,int majorID) {
+		Iterable<Module_Major> allID = module_majorRepository.findAll();
+		Iterator<Module_Major> allIDIter = allID.iterator();
+		int max=0;
+		while(allIDIter.hasNext()) {
+			Module_Major module = allIDIter.next();
+			if(module.getID()>max) {
+				max=module.getID();
+			}	
+		}
+		
+		
+		
 		for(int moduleID:modulesID) {
-			module_majorRepository.save(new Module_Major(0, moduleID, majorID));
+			module_majorRepository.save(new Module_Major(max+1, moduleID, majorID));
+			max++;
 		}
 	}
 	public void delete(int[] toDelete, int majorSelected) {
