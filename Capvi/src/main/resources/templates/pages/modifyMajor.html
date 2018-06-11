@@ -18,7 +18,11 @@
 	
 	<p>Liste des modules qui ne sont pas ratachés au parcours</p>
 	<form action="modifyMajor2" method="post">
-	<input th:each="moduleNB : ${modulesNotBelong}" th:text="${moduleNB.getName()}" type="checkbox" th:value="${moduleNB.getID()}" name="toModify"/>
+	<div th:each="moduleNB : ${modulesNotBelong}">
+	<input  th:text="${moduleNB.getName()}" type="checkbox" th:value="${moduleNB.getID()}" name="toModify"/>
+	<input type="checkbox" name="optionModule" th:value="${moduleNB.getID()}")>optionel</input>
+	</div>
+	
 	<input type="hidden" th:value="${major.getID()}" name="majorSelected"/>
 	<input type="submit" value="Ajouter"/>
 	</form>

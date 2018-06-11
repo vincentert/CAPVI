@@ -13,18 +13,28 @@ public class Module_Major {
 	private int ID;
 	private int ID_module;
 	private int ID_major;
+	private boolean option;
 
 	public Module_Major() {
 		
 	}
 	
-	public Module_Major(int iD, int ID_module, int ID_major) {
+	public Module_Major(int iD, int ID_module, int ID_major,boolean option) {
 		
 		super();
 		ID = iD;
 		this.ID_module = ID_module;
 		this.ID_major = ID_major;
+		this.option=option;
 		
+	}
+
+	public boolean isOption() {
+		return option;
+	}
+
+	public void setOption(boolean option) {
+		this.option = option;
 	}
 
 	public int getID() {

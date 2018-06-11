@@ -54,7 +54,12 @@ public class Module_MajorService {
 		return listNotMod;
 	}
 	
-	public void join(int[] modulesID,int majorID) {
+	public void join(int[] modulesID,int majorID, int[] optionModule) {
+		ArrayList<Integer> optionModuleId=new ArrayList<>();
+		for(int e:optionModule) {
+			optionModuleId.add(e);
+		}
+		
 		Iterable<Module_Major> allID = module_majorRepository.findAll();
 		Iterator<Module_Major> allIDIter = allID.iterator();
 		int max=0;
@@ -68,7 +73,11 @@ public class Module_MajorService {
 		
 		
 		for(int moduleID:modulesID) {
-			module_majorRepository.save(new Module_Major(max+1, moduleID, majorID));
+			if(optionModuleId.contains(moduleID)) {
+				module_majorRepository.save(new Module_Major(max+1, moduleID, majorID,true));
+			}else {
+				module_majorRepository.save(new Module_Major(max+1, moduleID, majorID,false));
+			}
 			max++;
 		}
 	}

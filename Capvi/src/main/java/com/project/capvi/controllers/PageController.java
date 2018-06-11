@@ -194,9 +194,9 @@ public class PageController {
 		return "pages/modifyMajor";
 	}
 	@RequestMapping(value = "/modifyMajor2", method = RequestMethod.POST)
-	public String postModifyMajor2(@RequestParam int majorSelected, Model model,@RequestParam int[] toModify ) {
+	public String postModifyMajor2(@RequestParam int majorSelected, Model model,@RequestParam int[] toModify,@RequestParam int[] optionModule ) {
 		
-		module_majorService.join(toModify, majorSelected);
+		module_majorService.join(toModify, majorSelected,optionModule);
 		model.addAttribute("major", majorService.getMajorById(majorSelected));
 		model.addAttribute("modulesBelong",module_majorService.getModulesBelong(majorSelected) );
 		model.addAttribute("modulesNotBelong", module_majorService.getModulesNotBelong(majorSelected));
