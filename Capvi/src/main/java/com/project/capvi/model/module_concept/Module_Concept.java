@@ -14,18 +14,27 @@ public class Module_Concept {
 	private int ID;
 	private int ID_module;
 	private int ID_concept;
-
+	private int niv_Att;
 	public Module_Concept() {
 		
 	}
 	
-	public Module_Concept(int iD, int ID_module, int ID_concept) {
+	public Module_Concept(int iD, int ID_module, int ID_concept,int niv_Att) {
 		
 		super();
 		ID = iD;
 		this.ID_module = ID_module;
 		this.ID_concept = ID_concept;
+		this.niv_Att=niv_Att;
 		
+	}
+
+	public int getNivAtt() {
+		return niv_Att;
+	}
+
+	public void setNivAtt(int nivAtt) {
+		this.niv_Att = nivAtt;
 	}
 
 	public int getID() {

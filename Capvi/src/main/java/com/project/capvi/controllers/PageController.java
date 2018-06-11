@@ -119,7 +119,7 @@ public class PageController {
 		if(user==null||!user.isAdmin()) {
 			return "redirect:/";
 		}
-		conceptService.addMajors(name, description);
+		conceptService.addConcept(name, description);
 		return "redirect:/AccueilAdmin";
 		
 	}
@@ -177,7 +177,8 @@ public class PageController {
 	}
 	
 	@RequestMapping(value = "/questmodul", method = RequestMethod.GET)
-	public String showquestmodulForm() {
+	public String showquestmodulForm(Model model) {
+		model.addAttribute("modules",moduleService.getAllModules());
 		return "pages/questmodul";
 	}
 	

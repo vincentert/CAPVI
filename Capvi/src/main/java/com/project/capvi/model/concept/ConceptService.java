@@ -19,7 +19,7 @@ public class ConceptService {
 		return concepts;
 	}
 
-	public int addMajors(String name, String description) {
+	public int addConcept(String name, String description) {
 		if(name==null||description==null||name.equals("")||description.equals("")) {
 			return -1;
 		}
@@ -34,7 +34,6 @@ public class ConceptService {
 		}
 		conceptRepository.save(new Concept(i,name,description));
 		return 1;
-		
 	}
 	
 }

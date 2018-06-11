@@ -70,7 +70,7 @@ public class Module_ConceptService {
 		}
 		
 		for(int conceptID:toModify) {
-			module_conceptRepository.save(new Module_Concept(max+1, moduleSelected,conceptID));
+			module_conceptRepository.save(new Module_Concept(max+1, moduleSelected,conceptID,0));
 			max++;
 		}
 		
