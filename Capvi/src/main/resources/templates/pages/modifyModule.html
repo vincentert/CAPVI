@@ -5,22 +5,36 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<p th:text="${module.getName()}"/>
-	<div th:each="concept : ${conceptsBelong}" th:text="${concept.getName()}"></div>
-	
+	<p th:text="${module.getName()}" />
+	<div th:each="concept : ${conceptsBelong}"
+		th:text="${concept.getName()}"></div>
+
 	<form action="modifyModule3" method="post">
-	<input th:each="conceptA : ${conceptsBelong}" th:text="${conceptA.getName()}" type="checkbox" th:value="${conceptA.getID()}" name="toDelete"/>
-	<input type="hidden" th:value="${module.getID()}" name="moduleSelected"/>
-	<input type="submit" value="Supprimer"/>
+		<input th:each="conceptA : ${conceptsBelong}" th:text="${conceptA.getName()}" type="checkbox" th:value="${conceptA.getID()}" name="toDelete" />
+		
+		
+		
+		<input type="hidden" th:value="${module.getID()}" name="moduleSelected" />
+		
+		<input type="submit" value="Supprimer" />
 	</form>
-	
-	
-	
+
+
+
 	<p>Liste des concepts qui ne sont pas rattachés au module</p>
 	<form action="modifyModule2" method="post">
-	<input th:each="conceptNB : ${conceptsNotBelong}" th:text="${conceptNB.getName()}" type="checkbox" th:value="${conceptNB.getID()}" name="toModify"/>
-	<input type="hidden" th:value="${module.getID()}" name="moduleSelected"/>
-	<input type="submit" value="Ajouter"/>
+		
+		<div th:each="conceptNB : ${conceptsNotBelong}">
+			<input  th:text="${conceptNB.getName()}" type="checkbox" th:value="${conceptNB.getID()}" name="toModify" />
+			<input type="range" min="1" max="5" value="3" class="slider" id="NiveauPrérequis" name="nivAtt" step="1"> 
+		</div>
+		
+		
+		
+		
+		<input type="hidden" th:value="${module.getID()}" name="moduleSelected" /> 
+		
+		<input type="submit" value="Ajouter" />
 	</form>
 </body>
 </html>

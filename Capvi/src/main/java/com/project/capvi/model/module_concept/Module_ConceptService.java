@@ -58,7 +58,7 @@ public class Module_ConceptService {
 		return listNotBelong;
 	}
 
-	public void join(int[] toModify, int moduleSelected) {
+	public void join(int[] toModify, int moduleSelected, int[] nivAtt) {
 		 Iterable<Module_Concept> allID = module_conceptRepository.findAll();
 		 Iterator<Module_Concept> allIDIter = allID.iterator();
 		int max=0;
@@ -68,10 +68,11 @@ public class Module_ConceptService {
 				max=module.getID();
 			}	
 		}
-		
+		int i=0;
 		for(int conceptID:toModify) {
-			module_conceptRepository.save(new Module_Concept(max+1, moduleSelected,conceptID,0));
+			module_conceptRepository.save(new Module_Concept(max+1, moduleSelected,conceptID,nivAtt[i]));
 			max++;
+			i++;
 		}
 		
 	}

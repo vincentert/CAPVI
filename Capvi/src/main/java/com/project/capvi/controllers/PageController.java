@@ -220,9 +220,9 @@ public class PageController {
 		return "pages/modifyModule";   
 	}
 	@RequestMapping(value = "/modifyModule2", method = RequestMethod.POST)
-	public String postModifyModule2(@RequestParam int moduleSelected, Model model,@RequestParam int[] toModify) {
+	public String postModifyModule2(@RequestParam int moduleSelected, Model model,@RequestParam int[] toModify,@RequestParam int[] nivAtt) {
 		
-		module_conceptService.join(toModify, moduleSelected);
+		module_conceptService.join(toModify, moduleSelected,nivAtt);
 		model.addAttribute("module", moduleService.getModuleById(moduleSelected));
 		model.addAttribute("conceptsBelong",module_conceptService.getConceptsBelong(moduleSelected) );
 		model.addAttribute("conceptsNotBelong", module_conceptService.getConceptsNotBelong(moduleSelected));
