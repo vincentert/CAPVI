@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.project.capvi.model.ConnexionBdd;
+import com.project.capvi.model.concept.ConceptService;
 import com.project.capvi.model.job.JobService;
 import com.project.capvi.model.job_major.Job_MajorService;
 import com.project.capvi.model.major.Major;
@@ -42,6 +43,8 @@ public class PageController {
 	private Job_MajorService job_majorService;
 	@Autowired
 	private ModuleService moduleService;
+	@Autowired
+	private ConceptService conceptService;
 	@Autowired
 	private Module_ConceptService module_conceptService;
 	@Autowired
@@ -95,6 +98,28 @@ public class PageController {
 			return "redirect:/";
 		}
 		majorService.addMajors(name, description);
+		return "redirect:/AccueilAdmin";
+		
+	}
+	@RequestMapping(value = "/addConcept", method = RequestMethod.GET)
+	public String addConcept(HttpSession session) {
+		User user = (User) session.getAttribute(LOGGEDUSER);
+		if(user!=null&&user.isAdmin()) {
+			return "pages/addConcept";
+		}else {
+			System.out.println("Acces refusé");
+			return "redirect:/";
+		}
+		
+	}
+	
+	@RequestMapping(value = "/addConcept", method = RequestMethod.POST)
+	public String addConcept(HttpSession session,@RequestParam String name, @RequestParam String description) {
+		User user = (User) session.getAttribute(LOGGEDUSER);
+		if(user==null||!user.isAdmin()) {
+			return "redirect:/";
+		}
+		conceptService.addMajors(name, description);
 		return "redirect:/AccueilAdmin";
 		
 	}
