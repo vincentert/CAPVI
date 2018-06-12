@@ -14,6 +14,7 @@
 	    <div class="widthh" th:fragment="head">
 	        <a th:href="@{/}" class="logo"  ><img width="150px" height="auto" th:src="@{images/isep.png}"></a>
 	        <p th:if="${session.isAdmin}" class="isAdmin">Page Administrateur</p>
+	        <a class="header_button" th:href="@{/logOut}">Deconnexion</a>
 	        <div class="header_span" th:text="${session.username}" ></div>
 		</div>
 	</header>

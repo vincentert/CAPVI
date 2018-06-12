@@ -15,6 +15,7 @@
 	    <div class="widthh" th:fragment="head">
 	        <img class="logo" width="150px" height="auto" th:src="@{images/isep.png}">
 	        <span class="header_span" th:text="${session.username}" ></span>
+	        <a class="header_button" th:href="@{/logOut}">Deconnexion</a>
 		</div>
 	</header>
 	

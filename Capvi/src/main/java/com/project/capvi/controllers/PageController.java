@@ -211,7 +211,11 @@ public class PageController {
 	public String postModifyMajorGet(Model model) {
 		return "redirect:/AccueilAdmin";
 	}
-	
+	@RequestMapping(value = "/logOut", method = RequestMethod.GET)
+	public String logOut(Model model,HttpSession session) {
+		session.invalidate();
+		return "redirect:/";
+	}
 	
 	
 	@RequestMapping(value = "/modifyMajor", method = RequestMethod.POST)
