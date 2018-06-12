@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.project.capvi.model.ConnexionBdd;
+import com.project.capvi.model.MajorModuleResult;
 import com.project.capvi.model.concept.ConceptService;
 import com.project.capvi.model.job.JobService;
 import com.project.capvi.model.job_major.Job_MajorService;
@@ -186,6 +188,14 @@ public class PageController {
 	public String showquestprereqForm(Model model) {
 		model.addAttribute("concepts", conceptService.getAllConcepts());
 		return "pages/questprereq";
+	}
+	@RequestMapping(value = "/reponsequestmodul", method = RequestMethod.POST)
+	public String reponsequestmodulForm(Model model,@RequestParam int[] choixModule,@RequestParam int[] moduleID) {
+		ArrayList<MajorModuleResult> test = module_majorService.result(choixModule,moduleID);
+		for(MajorModuleResult e:test) {
+			System.out.println(e.getMajor().getName()+" "+e.getScore());
+		}
+		return "pages/resultQuestModule";
 	}
 	@RequestMapping(value = "/modifyMajor", method = RequestMethod.POST)
 	public String postModifyMajor(@RequestParam int majorSelected, Model model) {
