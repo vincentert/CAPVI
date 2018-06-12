@@ -191,12 +191,23 @@ public class PageController {
 	}
 	@RequestMapping(value = "/reponsequestmodul", method = RequestMethod.POST)
 	public String reponsequestmodulForm(Model model,@RequestParam int[] choixModule,@RequestParam int[] moduleID) {
-		ArrayList<MajorModuleResult> test = module_majorService.result(choixModule,moduleID);
-		for(MajorModuleResult e:test) {
+		ArrayList<MajorModuleResult> results = module_majorService.result(choixModule,moduleID);
+		model.addAttribute("results", results);
+		for(MajorModuleResult e:results) {
+			e.getMajor().getName();
+			
 			System.out.println(e.getMajor().getName()+" "+e.getScore());
 		}
 		return "pages/resultQuestModule";
 	}
+	
+	@RequestMapping(value = "/modifyMajor", method = RequestMethod.GET)
+	public String postModifyMajorGet(Model model) {
+		return "redirect:/AccueilAdmin";
+	}
+	
+	
+	
 	@RequestMapping(value = "/modifyMajor", method = RequestMethod.POST)
 	public String postModifyMajor(@RequestParam int majorSelected, Model model) {
 		model.addAttribute("major", majorService.getMajorById(majorSelected));
@@ -205,7 +216,7 @@ public class PageController {
 		return "pages/modifyMajor";
 	}
 	@RequestMapping(value = "/modifyMajor2", method = RequestMethod.POST)
-	public String postModifyMajor2(@RequestParam int majorSelected, Model model,@RequestParam int[] toModify,@RequestParam int[] optionModule ) {
+	public String postModifyMajor2(@RequestParam int majorSelected, Model model,@RequestParam int[] toModify,@RequestParam(required=false,value= "") int[] optionModule ) {
 		
 		module_majorService.join(toModify, majorSelected,optionModule);
 		model.addAttribute("major", majorService.getMajorById(majorSelected));
