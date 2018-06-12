@@ -34,5 +34,9 @@ public class MajorService {
 		return 1;
 	}
 	
+	public Major getMajorById(int id) {
+		return majorRepository.findById(id).get();
+	}
+	
 
 }

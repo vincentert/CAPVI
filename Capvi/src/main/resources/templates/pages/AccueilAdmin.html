@@ -6,6 +6,28 @@
 </head>
 <body>
  Bienvenue <p  th:text="${session.loggedInUser.getName()}" th:unless="${session == null}"/>
+ 
+
+ <form  action="modifyMajor" method="post" th:each="major : ${session.majors}"  >
+ 
+ 	<input type="hidden" th:value="${major.getID()}" name="majorSelected"/>
+ 	<input type="submit" th:value="${major.getName()}"/>
+ 
+ </form>
+ 
+ 
  <a class="header_button" th:href="@{/addMajor}" >Ajouter un parcour</a>
+ 
+ <form  action="modifyModule" method="post" th:each="module : ${session.modules}"  >
+ 
+ 	<input type="hidden" th:value="${module.getID()}" name="moduleSelected"/>
+ 	<input type="submit" th:value="${module.getName()}"/>
+ 
+ </form>
+ <a class="header_button" th:href="@{/addModule}" >Ajouter un module</a>
+ 
+ 
+ <a class="header_button" th:href="@{/addConcept}" >Ajouter un concept</a>
+ 
 </body>
 </html>
