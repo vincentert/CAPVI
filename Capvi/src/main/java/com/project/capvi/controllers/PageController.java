@@ -212,10 +212,9 @@ public class PageController {
 	@RequestMapping(value = "/resultQuestConcept", method = RequestMethod.POST)
 	public String resultQuestConcept(Model model,@RequestParam int[] lvlConcept,@RequestParam int[] conceptID) {
 		List<MajorModuleConceptResult> results=module_conceptService.result(lvlConcept,conceptID);
-		model.addAttribute("results2", results);
+		model.addAttribute("results", results);
 		for(MajorModuleConceptResult e:results) {
 			e.getMajor().getName();
-			
 			System.out.println(e.getMajor().getName()+" "+e.getScore());
 		}
 		return "pages/resultQuestConcept";

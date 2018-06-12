@@ -162,8 +162,8 @@ public class Module_ConceptService {
 					}else if(lvlSelected<lvl) {
 						conceptsOrange.add(concept);
 						
-						scoreModule--;
-					}else if(lvl>2&&lvlSelected>lvl) {
+						scoreModule-=1;
+					}else if(lvl>2&&lvlSelected>=lvl) {
 						conceptsVert.add(concept);
 						
 						scoreModule++;
@@ -176,15 +176,15 @@ public class Module_ConceptService {
 					score++;
 					modulesVert.add(module);
 				}else if(scoreModule>=0&&module_majorService.getModulesBelongNonOptionalID(major.getID()).contains(module.getID())){
-					score+=3;
+					score+=2;
 					modulesVert.add(module);
 				}
 				else if(scoreModule>=-2 && module_majorService.getModulesBelongOptionalID(major.getID()).contains(module.getID())) {
-					score--;
+					score-=2;
 					modulesOrange.add(module);
 				}
 				else if(scoreModule>=-2&&module_majorService.getModulesBelongNonOptionalID(major.getID()).contains(module.getID())) {
-					score-=2;
+					score-=5;
 					modulesOrange.add(module);
 				}
 				else if(module_majorService.getModulesBelongOptionalID(major.getID()).contains(module.getID())) {
