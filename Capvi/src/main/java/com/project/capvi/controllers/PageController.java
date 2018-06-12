@@ -164,10 +164,14 @@ public class PageController {
 		session.setAttribute("username", user.getName());
 		System.out.println("Connected");
 		if(user.isAdmin()) {
+			session.setAttribute("isAdmin", true);
 			return "redirect:/AccueilAdmin";
+
 		}
 		else if (!user.isAdmin()) {
+			session.setAttribute("isAdmin", false);
 			return "redirect:/choixquestionnaire";
+
 
 		}
 		return "redirect:/";

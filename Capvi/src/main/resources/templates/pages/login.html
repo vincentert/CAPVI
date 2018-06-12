@@ -1,18 +1,19 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
 	<meta charset="ISO-8859-1">
-	<title>Connexion</title>
 	<link rel="stylesheet" type="text/css" th:href="@{/style.css}">
     <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+	<title>Connexion</title>
 </head>
 <body>
-<header>
-    <div class="widthh">
-        <img class="logo" width="150px" height="auto" th:src="@{images/isep.png}">
-        <a class="header_button" th:href="@{/login}" >Connexion</a>
-    </div>
-</header>
+
+	<header>
+	    <div class="widthh" th:fragment="head">
+	        <a class="logo" th:href="@{/}" ><img  width="150px" height="auto" th:src="@{images/isep.png}"></a>
+		</div>
+	</header>
+	
 <div class="widthh">
 
 		<h1><u>Page de Connexion</u></h1>

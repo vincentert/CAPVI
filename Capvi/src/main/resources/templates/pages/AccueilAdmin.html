@@ -1,33 +1,77 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="ISO-8859-1">
-<title>Insert title here</title>
+	<meta charset="ISO-8859-1">
+	<link rel="stylesheet" type="text/css" th:href="@{/style.css}">
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+  	<script type="text/javascript" th:src="@{/cript_admin.js}">
+  	</script>
+	<title>Accueil Administrateur</title>
 </head>
 <body>
- Bienvenue <p  th:text="${session.loggedInUser.getName()}" th:unless="${session == null}"/>
- 
 
- <form  action="modifyMajor" method="post" th:each="major : ${session.majors}"  >
+	<header th:if="${session.islogged}">
+	    <div class="widthh" th:fragment="head">
+	        <a th:href="@{/}" class="logo"  ><img width="150px" height="auto" th:src="@{images/isep.png}"></a>
+	        <p th:if="${session.isAdmin}" class="isAdmin">Page Administrateur</p>
+	        <div class="header_span" th:text="${session.username}" ></div>
+		</div>
+	</header>
+	
+	<header th:unless="${session.islogged}">
+	    <div class="widthh" th:fragment="head">
+	        <a th:href="@{/}" class="logo"  ><img width="150px" height="auto" th:src="@{images/isep.png}"></a>
+	        <a class="header_button" th:href="@{/login}" >Connexion</a>
+	    </div>
+	</header>
  
- 	<input type="hidden" th:value="${major.getID()}" name="majorSelected"/>
- 	<input type="submit" th:value="${major.getName()}"/>
- 
- </form>
- 
- 
- <a class="header_button" th:href="@{/addMajor}" >Ajouter un parcour</a>
- 
- <form  action="modifyModule" method="post" th:each="module : ${session.modules}"  >
- 
- 	<input type="hidden" th:value="${module.getID()}" name="moduleSelected"/>
- 	<input type="submit" th:value="${module.getName()}"/>
- 
- </form>
- <a class="header_button" th:href="@{/addModule}" >Ajouter un module</a>
- 
- 
- <a class="header_button" th:href="@{/addConcept}" >Ajouter un concept</a>
- 
+	<div id="choix_onglet">
+	    <ul>
+	        <li onClick="ongletAccueilAdmin(1, this)">
+	        	bla
+	        </li>
+	        <li onClick="ongletAccueilAdmin(2, this)">
+	        	bla2
+	        </li>
+	       	
+	       	<li onClick="ongletAccueilAdmin(3, this)">
+	        	bla3
+	        </li>
+	    </ul>
+	</div>
+	
+	<div id="tabcontent">
+	  <div id="parcour" class="tabpanel" style="display:inline">
+	  	balba
+	  </div>
+	  <div id="prerequi" class="tabpanel" style="display:none">
+	  vrfegr
+	  </div>
+	  <div id="module" class="tabpanel" style="display:none">
+	  1111111
+	  </div>
+	</div>
+	
+	 <form  action="modifyMajor" method="post" th:each="major : ${session.majors}"  >
+	 
+	 	<input type="hidden" th:value="${major.getID()}" name="majorSelected"/>
+	 	<input type="submit" th:value="${major.getName()}"/>
+	 
+	 </form>
+	 
+	 
+	 <a class="header_button" th:href="@{/addMajor}" >Ajouter un parcour</a>
+	 
+	 <form  action="modifyModule" method="post" th:each="module : ${session.modules}"  >
+	 
+	 	<input type="hidden" th:value="${module.getID()}" name="moduleSelected"/>
+	 	<input type="submit" th:value="${module.getName()}"/>
+	 
+	 </form>
+	 <a class="header_button" th:href="@{/addModule}" >Ajouter un module</a>
+	 
+	 
+	 <a class="header_button" th:href="@{/addConcept}" >Ajouter un concept</a>
+	 
 </body>
 </html>

@@ -1,16 +1,34 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="utf-8">
-<title>Questionnaire Pr√©requis</title>
+	<meta charset="ISO-8859-1">
+	<link rel="stylesheet" type="text/css" th:href="@{/style.css}">
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+	<title>Questionnaire Prerequis</title>
 </head>
 <body>
+
+	<header th:if="${session.islogged}">
+	    <div class="widthh" th:fragment="head">
+	        <a th:href="@{/}" class="logo"  ><img width="150px" height="auto" th:src="@{images/isep.png}"></a>
+	        <p th:if="${session.isAdmin}" class="isAdmin">Page Administrateur</p>
+	        <div class="header_span" th:text="${session.username}" ></div>
+		</div>
+	</header>
+	
+	<header th:unless="${session.islogged}">
+	    <div class="widthh" th:fragment="head">
+	        <a th:href="@{/}" class="logo"  ><img width="150px" height="auto" th:src="@{images/isep.png}"></a>
+	        <a class="header_button" th:href="@{/login}" >Connexion</a>
+	    </div>
+	</header>
+	
 		<form class="" action='reponsequestmodul' method="post">
 				
 				<div class="" th:each="concept : ${concepts}">	
-					<p> Quel est votre niveaux dans les pr√©requis suivants ? </p></br>
+					<p> Quel est votre niveaux dans les prÈrequis suivants ? </p></br>
 						<label th:text="${concept.getName()}"></label> 
-									<input type="range" min="1" max="5" value="3" class="slider" id="NiveauPr√©requis" step="1">
+									<input type="range" min="1" max="5" value="3" class="slider" id="NiveauPrÈrequis" step="1">
 									
 									
 				

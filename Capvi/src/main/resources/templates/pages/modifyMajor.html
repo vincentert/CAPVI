@@ -1,10 +1,28 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+	<meta charset="ISO-8859-1">
+	<link rel="stylesheet" type="text/css" th:href="@{/style.css}">
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+	<title>Modifier Major</title>
 </head>
 <body>
+
+	<header th:if="${session.islogged}">
+	    <div class="widthh" th:fragment="head">
+	        <a th:href="@{/}" class="logo"  ><img width="150px" height="auto" th:src="@{images/isep.png}"></a>
+	        <p th:if="${session.isAdmin}" class="isAdmin">Page Administrateur</p>
+	        <div class="header_span" th:text="${session.username}" ></div>
+		</div>
+	</header>
+	
+	<header th:unless="${session.islogged}">
+	    <div class="widthh" th:fragment="head">
+	        <a th:href="@{/}" class="logo"  ><img width="150px" height="auto" th:src="@{images/isep.png}"></a>
+	        <a class="header_button" th:href="@{/login}" >Connexion</a>
+	    </div>
+	</header>
+	
 	<p th:text="${major.getName()}"/>
 	<div th:each="moduleB : ${modulesBelong}" th:text="${moduleB.getName()}"></div>
 	
@@ -16,7 +34,7 @@
 	
 	
 	
-	<p>Liste des modules qui ne sont pas ratachÃ©s au parcours</p>
+	<p>Liste des modules qui ne sont pas ratachés au parcours</p>
 	<form action="modifyMajor2" method="post">
 	<div th:each="moduleNB : ${modulesNotBelong}">
 	<input  th:text="${moduleNB.getName()}" type="checkbox" th:value="${moduleNB.getID()}" name="toModify"/>
