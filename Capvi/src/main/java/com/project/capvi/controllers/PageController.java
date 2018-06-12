@@ -198,9 +198,9 @@ public class PageController {
 		return "pages/questprereq";
 	}
 	@RequestMapping(value = "/reponsequestmodul", method = RequestMethod.POST)
-	public String reponsequestmodulForm(Model model,@RequestParam int[] choixModule,@RequestParam int[] moduleID) {
+	public String reponsequestmodulForm(HttpSession session, @RequestParam int[] choixModule,@RequestParam int[] moduleID) {
 		ArrayList<MajorModuleResult> results = module_majorService.result(choixModule,moduleID);
-		model.addAttribute("results", results);
+		session.setAttribute("results", results);
 		for(MajorModuleResult e:results) {
 			e.getMajor().getName();
 			
@@ -210,14 +210,14 @@ public class PageController {
 	}
 	
 	@RequestMapping(value = "/resultQuestConcept", method = RequestMethod.POST)
-	public String resultQuestConcept(Model model,@RequestParam int[] lvlConcept,@RequestParam int[] conceptID) {
-		List<MajorModuleConceptResult> results=module_conceptService.result(lvlConcept,conceptID);
-		model.addAttribute("results", results);
-		for(MajorModuleConceptResult e:results) {
+	public String resultQuestConcept(HttpSession session, @RequestParam int[] lvlConcept,@RequestParam int[] conceptID) {
+		List<MajorModuleConceptResult> results2=module_conceptService.result(lvlConcept,conceptID);
+		session.setAttribute("results2", results2);
+		for(MajorModuleConceptResult e:results2) {
 			e.getMajor().getName();
 			System.out.println(e.getMajor().getName()+" "+e.getScore());
 		}
-		return "pages/resultQuestConcept";
+		return "pages/resultQuestModule";
 	}
 	
 	@RequestMapping(value = "/modifyMajor", method = RequestMethod.GET)
