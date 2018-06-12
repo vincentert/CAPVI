@@ -146,6 +146,7 @@ public class PageController {
 		if(user!=null&&user.isAdmin()) {
 			session.setAttribute("majors", majorService.getAllMajors());
 			session.setAttribute("modules", moduleService.getAllModules());
+			session.setAttribute("concepts", conceptService.getAllConcepts());
 			return "pages/AccueilAdmin";
 		}else {
 			System.out.println("Acces refusé");

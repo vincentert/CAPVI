@@ -50,7 +50,7 @@
 					<input type="hidden" th:value="${major.getID()}" name="majorSelected"/>
 					<input type="submit" th:value="${major.getName()}"/>
 				</form>
-				<a class="header_button" th:href="@{/addMajor}" >Ajouter un parcour</a>
+				<a class="header_button" th:href="@{/addMajor}" >Ajouter un parcours</a>
 			</div>
 			
 			<div id="module" class="tabpanel" style="display:none">
@@ -58,11 +58,15 @@
 				 	<input type="hidden" th:value="${module.getID()}" name="moduleSelected"/>
 				 	<input type="submit" th:value="${module.getName()}"/>
 				</form>
-				<a class="header_button" th:href="@{/addConcept}" >Ajouter un concept</a>
+				<a class="header_button" th:href="@{/addModule}" >Ajouter un module</a>
 			</div>
 						
 			<div id="prerequi" class="tabpanel" style="display:none">
-				<a class="header_button" th:href="@{/addModule}" >Ajouter un module</a>
+				<form  action="modifyModule" method="post" th:each="concept : ${session.concepts}"  >
+				 	<input type="hidden" th:value="${concept.getID()}" name="conceptSelected"/>
+				 	<input type="submit" th:value="${concept.getName()}"/>
+				</form>
+				<a class="header_button" th:href="@{/addConcept}" >Ajouter un prérequis</a>
 			</div>
 			
 		  
