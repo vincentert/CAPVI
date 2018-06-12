@@ -6,13 +6,13 @@ function ongletAccueilAdmin(n, litag) {
 	  
 	  switch(n) {
 	    case 1:
-	      parcours = "inline";
-	      break;
+			parcours = "inline";
+			break;
 	    case 2:
-	      prerequis = "inline";
+	    	modules= "inline";
 	      break;
 	    case 3:
-		  modules= "inline";
+	    	prerequis = "inline";
 		  break;
 	    default:
 	      break;

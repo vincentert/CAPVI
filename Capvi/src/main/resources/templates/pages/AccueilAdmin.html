@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-	<meta charset="ISO-8859-1">
+	<meta charset="UTF-8">
 	<link rel="stylesheet" type="text/css" th:href="@{/style.css}">
     <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
   	<script type="text/javascript" th:src="@{/cript_admin.js}">
@@ -14,7 +14,7 @@
 	    <div class="widthh" th:fragment="head">
 	        <a th:href="@{/}" class="logo"  ><img width="150px" height="auto" th:src="@{images/isep.png}"></a>
 	        <p th:if="${session.isAdmin}" class="isAdmin">Page Administrateur</p>
-	        <a class="header_button" th:href="@{/logOut}">Deconnexion</a>
+	        <a class="header_button_logout" th:href="@{/logOut}">Deconnexion</a>
 	        <div class="header_span" th:text="${session.username}" ></div>
 		</div>
 	</header>
@@ -25,7 +25,9 @@
 	        <a class="header_button" th:href="@{/login}" >Connexion</a>
 	    </div>
 	</header>
+	
 	<div class="widthh">
+	
 		<div id="choix_onglet">
 		    <ul>
 		        <li onClick="ongletAccueilAdmin(1, this)">
@@ -36,46 +38,42 @@
 		        </li>
 		       	
 		       	<li onClick="ongletAccueilAdmin(3, this)">
-		        	<p>Pr&eacute;requis</p>
+		        	<p>Prérequis</p>
 		        </li>
 		    </ul>
 		</div>
 		
 		<div id="tabcontent">
-		  <div id="parcour" class="tabpanel" style="display:inline">
-		  
-			 <form  action="modifyMajor" method="post" th:each="major : ${session.majors}"  >
-			 	<input type="hidden" th:value="${major.getID()}" name="majorSelected"/>
-			 	<input type="submit" th:value="${major.getName()}"/>
-			 </form>
-		  	 <a class="header_button" th:href="@{/addMajor}" >Ajouter un parcour</a>
-		  	 
-		  </div>
-		  
-		  <div id="prerequi" class="tabpanel" style="display:none">
-		  
-		 <a class="header_button" th:href="@{/addModule}" >Ajouter un module</a>
-		  	 
-		  </div>
-		  
-		  <div id="module" class="tabpanel" style="display:none">
-			 
-		 <a class="header_button" th:href="@{/addConcept}" >Ajouter un concept</a>
-		  </div>
-		</div>
 		
-
-		 
-		 <form  action="modifyModule" method="post" th:each="module : ${session.modules}"  >
-		 
-		 	<input type="hidden" th:value="${module.getID()}" name="moduleSelected"/>
-		 	<input type="submit" th:value="${module.getName()}"/>
-		 
-		 </form>
-
-		 
-		 
-
+			<div id="parcour" class="tabpanel" style="display:inline">
+				<form class="form_admin" action="modifyMajor" method="post" th:each="major : ${session.majors}"  >
+					<input type="hidden" th:value="${major.getID()}" name="majorSelected"/>
+					<input type="submit" th:value="${major.getName()}"/>
+				</form>
+				<a class="header_button" th:href="@{/addMajor}" >Ajouter un parcour</a>
+			</div>
+			
+			<div id="module" class="tabpanel" style="display:none">
+				<form  action="modifyModule" method="post" th:each="module : ${session.modules}"  >
+				 	<input type="hidden" th:value="${module.getID()}" name="moduleSelected"/>
+				 	<input type="submit" th:value="${module.getName()}"/>
+				</form>
+				<a class="header_button" th:href="@{/addConcept}" >Ajouter un concept</a>
+			</div>
+						
+			<div id="prerequi" class="tabpanel" style="display:none">
+				<a class="header_button" th:href="@{/addModule}" >Ajouter un module</a>
+			</div>
+			
+		  
+		</div>
 	</div>
+	
+	<footer>
+	    <div class="widthh">
+	        <a href="https://www.isep.fr"> www.isep.fr</a>
+	        <p class="txt_footer">28 rue Notre-Dame des Champs - 75006 Paris</br> 10, rue de Vanves. 92139 Issy-les -Moulineaux</br>Standard: +33 49 54 52 00 6Informations : +33 (0)1 49 54 52 43 -info@isep.fr</p>
+	    </div>
+	</footer>
 </body>
 </html>

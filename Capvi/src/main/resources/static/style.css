@@ -1,6 +1,12 @@
 body{
     font-family: 'lato', 'sans-serif';
     margin: 0;
+    position: relative;
+    min-height: 74.1%;
+    padding-bottom: 250px;
+}
+html {
+	height: 100%;
 }
 
 /*
@@ -54,6 +60,30 @@ header{
     bottom: 25px;
 }
 
+.header_button{
+    margin-top: 34px;
+    float: right;
+    background-color: #0061A1;
+    border: #0061A1 solid 1px;
+    border-radius: 15px;
+    color: #fff;
+    font-size: 1em;
+    padding: 2px 10px;
+}
+
+.header_button_logout{
+    margin-top: 57px;
+    float: right;
+    background-color: #0061A1;
+    border: #0061A1 solid 1px;
+    border-radius: 15px;
+    color: #fff;
+    font-size: 1em;
+    padding: 2px 10px;
+    position: relative;
+    right: 104px;
+}
+
 /* page d'accueil */
 
 .logo{
@@ -84,16 +114,7 @@ header{
     margin-left: 10px;
 }
 
-.header_button{
-    margin-top: 34px;
-    float: right;
-    background-color: #0061A1;
-    border: #0061A1 solid 1px;
-    border-radius: 15px;
-    color: #fff;
-    font-size: 1em;
-    padding: 2px 10px;
-}
+
 
 .block1{
     border: #0061A1 solid 2px;
@@ -283,6 +304,75 @@ h3{
 	display: block;
 }
 
+.form_admin  {
+	
+}
+
+/* ----------- */
+
+
+/* questionnaires */
+
+.questionnaire {
+	text-align: center;
+	background: #e5E5E5E5;
+    border-left: solid  #FFA100 8px;
+    height: 60px;
+    margin-top: 50px;
+    margin-right: 135px;
+    margin-left: 135px;
+}
+
+.questionnaire label {
+	position: relative;
+	top: 15px;
+	font-size: 22px;
+	color: #0061A1;
+	padding-right: 50px;
+}
+
+.questionnaire input {
+	position: relative;
+	top: 19px;
+}
+
+.questionnaire_button {
+	margin-top: 40px;
+    background-color: #0061A1;
+    border: #0061A1 solid 1px;
+    border-radius: 15px;
+    color: #fff;
+    font-size: 1em;
+    padding: 2px 10px;
+    position: relative;
+    margin-right: auto;
+	margin-left: auto;
+	display: block;   
+}
+
+.legende_echelle {
+	position: relative;
+    left: 19px;
+    top: 15px;
+    font-size: 11px;
+    color: #FFA100;
+}
+.span1 {
+	position: relative;
+	bottom: 39px;
+}
+
+.span2 {
+	position: relative;
+
+    left: 16px;
+}
+
+.span3 {
+	position: relative;
+    left: 47px;
+    bottom: 39px;
+}
 /* ----------- */
 
 /* footer */
@@ -294,6 +384,8 @@ footer {
     bottom: 0;
     display: block;
     width: 100%;
+    position: absolute;
+
 }
 
 a {

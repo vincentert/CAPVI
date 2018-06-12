@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-	<meta charset="ISO-8859-1">
+	<meta charset="UTF-8">
 	<link rel="stylesheet" type="text/css" th:href="@{/style.css}">
     <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
 	<title>Modifier Module</title>
@@ -12,6 +12,7 @@
 	    <div class="widthh" th:fragment="head">
 	        <a th:href="@{/}" class="logo"  ><img width="150px" height="auto" th:src="@{images/isep.png}"></a>
 	        <p th:if="${session.isAdmin}" class="isAdmin">Page Administrateur</p>
+	        <a class="header_button_logout" th:href="@{/logOut}">Deconnexion</a>
 	        <div class="header_span" th:text="${session.username}" ></div>
 		</div>
 	</header>
@@ -22,37 +23,49 @@
 	        <a class="header_button" th:href="@{/login}" >Connexion</a>
 	    </div>
 	</header>
+	<div class="widthh">
+		<p th:text="${module.getName()}" />
+		<div th:each="concept : ${conceptsBelong}"
+			th:text="${concept.getName()}"></div>
 
-	<p th:text="${module.getName()}" />
-	<div th:each="concept : ${conceptsBelong}"
-		th:text="${concept.getName()}"></div>
+		<form action="modifyModule3" method="post">
+			<input th:each="conceptA : ${conceptsBelong}"
+				th:text="${conceptA.getName()}" type="checkbox"
+				th:value="${conceptA.getID()}" name="toDelete" /> <input
+				type="hidden" th:value="${module.getID()}" name="moduleSelected" />
 
-	<form action="modifyModule3" method="post">
-		<input th:each="conceptA : ${conceptsBelong}" th:text="${conceptA.getName()}" type="checkbox" th:value="${conceptA.getID()}" name="toDelete" />
-		
-		
-		
-		<input type="hidden" th:value="${module.getID()}" name="moduleSelected" />
-		
-		<input type="submit" value="Supprimer" />
-	</form>
-
+			<input type="submit" value="Supprimer" />
+		</form>
 
 
-	<p>Liste des concepts qui ne sont pas rattachés au module</p>
-	<form action="modifyModule2" method="post">
-		
-		<div th:each="conceptNB : ${conceptsNotBelong}">
-			<input  th:text="${conceptNB.getName()}" type="checkbox" th:value="${conceptNB.getID()}" name="toModify" />
-			<input type="range" min="1" max="5" value="3" class="slider" id="NiveauPrérequis" name="nivAtt" step="1"> 
+
+		<p>Liste des concepts qui ne sont pas rattachÃ©s au module</p>
+		<form action="modifyModule2" method="post">
+
+			<div th:each="conceptNB : ${conceptsNotBelong}">
+				<input th:text="${conceptNB.getName()}" type="checkbox"
+					th:value="${conceptNB.getID()}" name="toModify" /> <input
+					type="range" min="1" max="5" value="3" class="slider"
+					id="NiveauPrÃ©requis" name="nivAtt" step="1">
+			</div>
+
+
+
+
+			<input type="hidden" th:value="${module.getID()}"
+				name="moduleSelected" /> <input type="submit" value="Ajouter" />
+		</form>
+	</div>
+
+	<footer>
+		<div class="widthh">
+			<a href="https://www.isep.fr"> www.isep.fr</a>
+			<p class="txt_footer">
+				28 rue Notre-Dame des Champs - 75006 Paris</br> 10, rue de Vanves. 92139
+				Issy-les -Moulineaux</br>Standard: +33 49 54 52 00 6Informations : +33
+				(0)1 49 54 52 43 -info@isep.fr
+			</p>
 		</div>
-		
-		
-		
-		
-		<input type="hidden" th:value="${module.getID()}" name="moduleSelected" /> 
-		
-		<input type="submit" value="Ajouter" />
-	</form>
+	</footer>
 </body>
 </html>

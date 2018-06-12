@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-	<meta charset="ISO-8859-1">
+	<meta charset="UTF-8">
 	<link rel="stylesheet" type="text/css" th:href="@{/style.css}">
     <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
 	<title>Questionnaire Prerequis</title>
@@ -12,6 +12,7 @@
 	    <div class="widthh" th:fragment="head">
 	        <a th:href="@{/}" class="logo"  ><img width="150px" height="auto" th:src="@{images/isep.png}"></a>
 	        <p th:if="${session.isAdmin}" class="isAdmin">Page Administrateur</p>
+	        <a class="header_button_logout" th:href="@{/logOut}">Deconnexion</a>
 	        <div class="header_span" th:text="${session.username}" ></div>
 		</div>
 	</header>
@@ -22,20 +23,34 @@
 	        <a class="header_button" th:href="@{/login}" >Connexion</a>
 	    </div>
 	</header>
-	
+	<div class="widthh">
+		<h1><u>Quel est votre niveau dans les domaines suivants</u></h1>
+
 		<form class="" action='reponsequestmodul' method="post">
 				
 				<div class="" th:each="concept : ${concepts}">	
-					<p> Quel est votre niveaux dans les prérequis suivants ? </p></br>
-						<label th:text="${concept.getName()}"></label> 
-									<input type="range" min="1" max="5" value="3" class="slider" id="NiveauPrérequis" step="1">
-									
-									
-				
+						<div class="questionnaire">
+							<label th:text="${concept.getName()}"></label> 
+								<input type="range" min="1" max="5" value="3" class="slider" id="NiveauPrÃ©requis" step="1">
+								<div class="legende_echelle">
+									<span class="span1">non abordÃ©</span>
+									<span class="span2">moyen</span>
+									<span class="span3">acquis</span>
+								</div>
+								
+						</div>
 				</div>
 				
-			<button id="questprereqButton">Envoyer</button>
+			<button class="questionnaire_button">Envoyer</button>
 
 		</form>
+	</div>
+	
+	<footer>
+	    <div class="widthh">
+	        <a href="https://www.isep.fr"> www.isep.fr</a>
+	        <p class="txt_footer">28 rue Notre-Dame des Champs - 75006 Paris</br> 10, rue de Vanves. 92139 Issy-les -Moulineaux</br>Standard: +33 49 54 52 00 6Informations : +33 (0)1 49 54 52 43 -info@isep.fr</p>
+	    </div>
+	</footer>
 </body>
 </html>

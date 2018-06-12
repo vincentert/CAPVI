@@ -5,17 +5,14 @@
     	<title>Accueil</title>
     <link rel="stylesheet" type="text/css" th:href="@{/style.css}">
     <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
-  	<script type="text/javascript" th:src="@{/script.js}">
-  	</script>
-  	
 </head>
 <body>
 
 	<header th:if="${session.islogged}">
 	    <div class="widthh" th:fragment="head">
 	        <img class="logo" width="150px" height="auto" th:src="@{images/isep.png}">
-	        <span class="header_span" th:text="${session.username}" ></span>
-	        <a class="header_button" th:href="@{/logOut}">Deconnexion</a>
+	        <a class="header_button_logout" th:href="@{/logOut}">Deconnexion</a>
+	        <div class="header_span" th:text="${session.username}" ></div>
 		</div>
 	</header>
 	
@@ -64,17 +61,6 @@
     </div>
 </footer>
 </body>
-<!-- <script th:inline="javascript"> -->
-// /*<![CDATA[*/
-    
-
-//     var username = /*[[${message}]]*/ 'default';
-//     myFunction(username);
-//     //autocomplete(document.getElementById("book"),username);
-    
-// /*]]>*/
-<!-- </script> -->
-	 
 </html>
 
 

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-	<meta charset="ISO-8859-1">
+	<meta charset="UTF-8">
 	<link rel="stylesheet" type="text/css" th:href="@{/style.css}">
     <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
 	<title>Questionnaire Module</title>
@@ -12,6 +12,7 @@
 	    <div class="widthh" th:fragment="head">
 	        <a th:href="@{/}" class="logo"  ><img width="150px" height="auto" th:src="@{images/isep.png}"></a>
 	        <p th:if="${session.isAdmin}" class="isAdmin">Page Administrateur</p>
+	        <a class="header_button_logout" th:href="@{/logOut}">Deconnexion</a>
 	        <div class="header_span" th:text="${session.username}" ></div>
 		</div>
 	</header>
@@ -22,27 +23,27 @@
 	        <a class="header_button" th:href="@{/login}" >Connexion</a>
 	    </div>
 	</header>
-
-	<form class="" action='reponsequestmodul' method="post">
-		<div class="">
-			<p>Est-ce que ces modules vous intéresse ?</p>
-			
-			<div th:each="module : ${modules}">
-				<label th:text=${module.getName()}></label> 
-					<input type="range" min="1" max="3" value="1" class="slider" id="choixModule" name="choixModule" step="1">
-					<input type="hidden" name="moduleID" th:value="${module.getID()}"/>
-<!-- 				<input type="radio" name="choixmodule" value="oui" id="choixmoduleoui">  -->
-<!-- 				<input type="radio" name="choixmodule" value="non" id="choixmodulenon">  -->
-<!-- 				<input type="radio" name="choixmodule" value="ne sais pas" id="choixmodulensp"> -->
+	
+	<div class="widthh">
+		<h1><u>Est-ce que ces modules vous intÃ©resse ?</u></h1>
+		<form class="" action='reponsequestmodul' method="post">
+			<div class="">
+				<div th:each="module : ${modules}">
+					<div class="questionnaire">
+						<label th:text=${module.getName()}></label> 
+							<input type="range" min="1" max="3" value="1" class="slider" id="choixModule" name="choixModule" step="1">
+							<input type="hidden" name="moduleID" th:value="${module.getID()}"/>
+					</div>
+				</div>
 			</div>
-			
-		
-		</div>
-		<button id="questmoduleButton">Envoyer</button>
-
-
-	</form>
-
-
-</body>
+			<button class="questionnaire_button">Envoyer</button>
+		</form>
+	</div>
+	
+	<footer>
+	    <div class="widthh">
+	        <a href="https://www.isep.fr"> www.isep.fr</a>
+	        <p class="txt_footer">28 rue Notre-Dame des Champs - 75006 Paris</br> 10, rue de Vanves. 92139 Issy-les -Moulineaux</br>Standard: +33 49 54 52 00 6Informations : +33 (0)1 49 54 52 43 -info@isep.fr</p>
+	    </div>
+	</footer></body>
 </html>
