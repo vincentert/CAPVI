@@ -89,8 +89,10 @@ public class Module_MajorService {
 	
 	public void join(int[] modulesID,int majorID, int[] optionModule) {
 		ArrayList<Integer> optionModuleId=new ArrayList<>();
-		for(int e:optionModule) {
-			optionModuleId.add(e);
+		if(optionModule!=null) {
+			for(int e:optionModule) {
+				optionModuleId.add(e);
+			}
 		}
 		
 		Iterable<Module_Major> allID = module_majorRepository.findAll();
@@ -106,7 +108,7 @@ public class Module_MajorService {
 		
 		
 		for(int moduleID:modulesID) {
-			if(optionModuleId.contains(moduleID)) {
+			if(optionModuleId!=null&&optionModuleId.contains(moduleID)) {
 				module_majorRepository.save(new Module_Major(max+1, moduleID, majorID,true));
 			}else {
 				module_majorRepository.save(new Module_Major(max+1, moduleID, majorID,false));
@@ -157,24 +159,35 @@ public class Module_MajorService {
 			int score=0;
 			ArrayList<Module> modulesOptionel = getModulesBelongOptional(major.getID());
 			ArrayList<Module> modulesNonOptionel = getModulesBelongNonOptional(major.getID());
+			
+			 List<Module> modulesVoulusOptionel=new ArrayList<>();
+			 List<Module> modulesVoulusNonOptionel=new ArrayList<>();
+			 List<Module> modulesNonVoulusOptionel=new ArrayList<>();
+			 List<Module> modulesNonVoulusNonOptionel=new ArrayList<>();
+			
 			for(Module moduleOptionel:modulesOptionel) {
 				int s = choixModule[moduleIDList.indexOf(moduleOptionel.getID())];
 				if(s==1) {
+					modulesNonVoulusOptionel.add(moduleOptionel);
 					score-=1;
 				}else if(s==3){
+					modulesVoulusOptionel.add(moduleOptionel);
 					score+=1;
 				}
 			}
 			for(Module moduleNonOptionel:modulesNonOptionel) {
 				int s = choixModule[moduleIDList.indexOf(moduleNonOptionel.getID())];
 				if(s==1) {
+					modulesNonVoulusNonOptionel.add(moduleNonOptionel);
 					score-=3;
 				}else if(s==3){
+					modulesVoulusNonOptionel.add(moduleNonOptionel);
 					score+=3;
 				}
 			}
 			
-			returnList.add(new MajorModuleResult(major, modulesOptionel, moduleListChoix, modulesNonOptionel, score));
+			returnList.add(new MajorModuleResult(major, modulesOptionel, moduleListChoix, modulesNonOptionel, score,
+					modulesVoulusOptionel,modulesVoulusNonOptionel,modulesNonVoulusOptionel,modulesNonVoulusNonOptionel));
 		}
 		Comparator<MajorModuleResult> c=new Comparator<MajorModuleResult>() {
 

@@ -11,14 +11,55 @@ public class MajorModuleResult implements Serializable{
 	private List<Module> modulesOptionel;
 	private List<Integer> choixModule;
 	private List<Module> modulesNonOptionel;
+	private List<Module> modulesVoulusOptionel;
+	private List<Module> modulesVoulusNonOptionel;
+	private List<Module> modulesNonVoulusOptionel;
+	private List<Module> modulesNonVoulusNonOptionel;
 	private int score;
 	
-	public MajorModuleResult(Major major,List<Module> modulesOptionel,List<Integer> choixModule,List<Module> modulesNonOptionel,int score) {
+	public MajorModuleResult(Major major,List<Module> modulesOptionel,List<Integer> choixModule,List<Module> modulesNonOptionel,int score,
+			List<Module> modulesVoulusOptionel,List<Module> modulesVoulusNonOptionel,List<Module> modulesNonVoulusOptionel,List<Module> modulesNonVoulusNonOptionel) {
 		this.major=major;
 		this.modulesOptionel=modulesOptionel;
 		this.choixModule=choixModule;
 		this.modulesNonOptionel=modulesNonOptionel;
 		this.score=score;
+		this.modulesVoulusOptionel=modulesVoulusOptionel;
+		this.modulesVoulusNonOptionel=modulesVoulusOptionel;
+		this.modulesNonVoulusOptionel=modulesVoulusOptionel;
+		this.modulesNonVoulusNonOptionel=modulesVoulusOptionel;
+	}
+
+	public List<Module> getModulesVoulusOptionel() {
+		return modulesVoulusOptionel;
+	}
+
+	public void setModulesVoulusOptionel(List<Module> modulesVoulusOptionel) {
+		this.modulesVoulusOptionel = modulesVoulusOptionel;
+	}
+
+	public List<Module> getModulesVoulusNonOptionel() {
+		return modulesVoulusNonOptionel;
+	}
+
+	public void setModulesVoulusNonOptionel(List<Module> modulesVoulusNonOptionel) {
+		this.modulesVoulusNonOptionel = modulesVoulusNonOptionel;
+	}
+
+	public List<Module> getModulesNonVoulusOptionel() {
+		return modulesNonVoulusOptionel;
+	}
+
+	public void setModulesNonVoulusOptionel(List<Module> modulesNonVoulusOptionel) {
+		this.modulesNonVoulusOptionel = modulesNonVoulusOptionel;
+	}
+
+	public List<Module> getModulesNonVoulusNonOptionel() {
+		return modulesNonVoulusNonOptionel;
+	}
+
+	public void setModulesNonVoulusNonOptionel(List<Module> modulesNonVoulusNonOptionel) {
+		this.modulesNonVoulusNonOptionel = modulesNonVoulusNonOptionel;
 	}
 
 	public int getScore() {
