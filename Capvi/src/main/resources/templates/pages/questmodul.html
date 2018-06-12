@@ -30,13 +30,13 @@
 			<div th:each="module : ${modules}">
 				<label th:text=${module.getName()}></label> 
 					<input type="range" min="1" max="3" value="1" class="slider" id="choixModule" name="choixModule" step="1">
+					<input type="hidden" name="moduleID" th:value="${module.getID()}"/>
 <!-- 				<input type="radio" name="choixmodule" value="oui" id="choixmoduleoui">  -->
 <!-- 				<input type="radio" name="choixmodule" value="non" id="choixmodulenon">  -->
 <!-- 				<input type="radio" name="choixmodule" value="ne sais pas" id="choixmodulensp"> -->
 			</div>
 			
-			
-			
+		
 		</div>
 		<button id="questmoduleButton">Envoyer</button>
 
