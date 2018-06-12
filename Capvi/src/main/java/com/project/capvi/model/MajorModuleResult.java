@@ -7,6 +7,10 @@ import com.project.capvi.model.major.Major;
 import com.project.capvi.model.module.Module;
 
 public class MajorModuleResult implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -1357724419195142761L;
 	private Major major;
 	private List<Module> modulesOptionel;
 	private List<Integer> choixModule;

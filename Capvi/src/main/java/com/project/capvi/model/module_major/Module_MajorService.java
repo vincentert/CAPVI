@@ -52,6 +52,23 @@ public class Module_MajorService {
 		}
 		return listMod;
 	}
+	public ArrayList<Integer> getModulesBelongOptionalID(int majID){
+		ArrayList<Integer> listMod=new ArrayList<>();
+		Iterable<Module_Major> allModMaj = module_majorRepository.findAll();
+		Iterator<Module_Major> allModMajIter = allModMaj.iterator();
+		while(allModMajIter.hasNext()) {
+			 Module_Major modMaj = allModMajIter.next();
+			 if(modMaj.getID_major()==majID&&modMaj.isOption()) {
+				 listMod.add(moduleRepository.findById(modMaj.getID_module()).get().getID());
+			 }
+		}
+		return listMod;
+	}
+	
+	
+	
+	
+	
 	public ArrayList<Module> getModulesBelongNonOptional(int majID){
 		ArrayList<Module> listMod=new ArrayList<>();
 		Iterable<Module_Major> allModMaj = module_majorRepository.findAll();
@@ -60,6 +77,18 @@ public class Module_MajorService {
 			 Module_Major modMaj = allModMajIter.next();
 			 if(modMaj.getID_major()==majID&&!modMaj.isOption()) {
 				 listMod.add(moduleRepository.findById(modMaj.getID_module()).get());
+			 }
+		}
+		return listMod;
+	}
+	public ArrayList<Integer> getModulesBelongNonOptionalID(int majID){
+		ArrayList<Integer> listMod=new ArrayList<>();
+		Iterable<Module_Major> allModMaj = module_majorRepository.findAll();
+		Iterator<Module_Major> allModMajIter = allModMaj.iterator();
+		while(allModMajIter.hasNext()) {
+			 Module_Major modMaj = allModMajIter.next();
+			 if(modMaj.getID_major()==majID&&!modMaj.isOption()) {
+				 listMod.add(moduleRepository.findById(modMaj.getID_module()).get().getID());
 			 }
 		}
 		return listMod;

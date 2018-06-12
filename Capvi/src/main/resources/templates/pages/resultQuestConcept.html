@@ -4,7 +4,7 @@
 	<meta charset="UTF-8">
 	<link rel="stylesheet" type="text/css" th:href="@{/style.css}">
     <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
-	<title>Questionnaire Prerequis</title>
+	<title>Resultat module</title>
 </head>
 <body>
 
@@ -23,28 +23,14 @@
 	        <a class="header_button" th:href="@{/login}" >Connexion</a>
 	    </div>
 	</header>
+	
 	<div class="widthh">
-		<h1><u>Quel est votre niveau dans les domaines suivants</u></h1>
-
-		<form class="" action='resultQuestConcept' method="post">
-				
-				<div class="" th:each="concept : ${concepts}">	
-						<div class="questionnaire">
-							<label th:text="${concept.getName()}"></label> 
-								<input type="range" min="1" max="5" value="3" name="lvlConcept" class="slider" id="NiveauPrérequis" step="1">
-								<input type="hidden" name="conceptID" th:value="${concept.getID()}"/>
-								<div class="legende_echelle">
-									<span class="span1">non abordé</span>
-									<span class="span2">moyen</span>
-									<span class="span3">acquis</span>
-								</div>
-								
-						</div>
-				</div>
-				
-			<button class="questionnaire_button">Envoyer</button>
-
-		</form>
+		<div th:each="result:${results}">
+			<p th:text="${result.getMajor().getName()}"> Nom du parcour</p>
+			<p th:text="${result.getScore()}"> Score</p>
+			<p th:each="moduleVNO:${result.getModulesVoulusNonOptionel()}" th:text="${moduleVNO.getName()}"> Module voulus non optionel</p>
+			<p th:each="moduleNVNO:${result.getModulesNonVoulusNonOptionel()}" th:text="${moduleNVNO.getName()}"> Module non voulus non optionel</p>
+		</div>
 	</div>
 	
 	<footer>

@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.project.capvi.model.ConnexionBdd;
+import com.project.capvi.model.MajorModuleConceptResult;
 import com.project.capvi.model.MajorModuleResult;
 import com.project.capvi.model.concept.ConceptService;
 import com.project.capvi.model.job.JobService;
@@ -206,6 +207,18 @@ public class PageController {
 			System.out.println(e.getMajor().getName()+" "+e.getScore());
 		}
 		return "pages/resultQuestModule";
+	}
+	
+	@RequestMapping(value = "/resultQuestConcept", method = RequestMethod.POST)
+	public String resultQuestConcept(Model model,@RequestParam int[] lvlConcept,@RequestParam int[] conceptID) {
+		List<MajorModuleConceptResult> results=module_conceptService.result(lvlConcept,conceptID);
+		model.addAttribute("results2", results);
+		for(MajorModuleConceptResult e:results) {
+			e.getMajor().getName();
+			
+			System.out.println(e.getMajor().getName()+" "+e.getScore());
+		}
+		return "pages/resultQuestConcept";
 	}
 	
 	@RequestMapping(value = "/modifyMajor", method = RequestMethod.GET)
