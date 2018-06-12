@@ -183,7 +183,8 @@ public class PageController {
 	}
 	
 	@RequestMapping(value = "/questprereq", method = RequestMethod.GET)
-	public String showquestprereqForm() {
+	public String showquestprereqForm(Model model) {
+		model.addAttribute("concepts", conceptService.getAllConcepts());
 		return "pages/questprereq";
 	}
 	@RequestMapping(value = "/modifyMajor", method = RequestMethod.POST)
