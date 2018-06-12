@@ -23,10 +23,10 @@ function ongletAccueilAdmin(n, litag) {
 	  document.getElementById("module").style.display = modules;
 	  
 	  var choix = document.getElementById("choix_onglet");
-	  var ca = Array.prototype.slice.call(tabs.querySelectorAll("li"));
+	  var ca = Array.prototype.slice.call(choix.querySelectorAll("li"));
 	  
 	  ca.map(function(elem) {
-	    elem.style.background="#F0F0F0";
+	    elem.style.background="#e5E5E5E5";
 	    elem.style.borderBottom="1px solid gray"
 	  });
 
