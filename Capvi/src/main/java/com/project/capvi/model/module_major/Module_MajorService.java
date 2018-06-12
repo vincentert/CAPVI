@@ -95,21 +95,21 @@ public class Module_MajorService {
 	}
 	
 	public ArrayList<Module> getModulesNotBelong(int majID){
-		ArrayList<Module> listMod=new ArrayList<>();
+		ArrayList<Integer> listMod=new ArrayList<>();
 		ArrayList<Module> listNotMod=new ArrayList<>();
 		Iterable<Module_Major> allModMaj = module_majorRepository.findAll();
 		Iterator<Module_Major> allModMajIter = allModMaj.iterator();
 		while(allModMajIter.hasNext()) {
 			 Module_Major modMaj = allModMajIter.next();
 			 if(modMaj.getID_major()==majID) {
-				 listMod.add(moduleRepository.findById(modMaj.getID_module()).get());
+				 listMod.add(moduleRepository.findById(modMaj.getID_module()).get().getID());
 			 }
 		}
 		Iterable<Module> listModule = moduleRepository.findAll();
 		Iterator<Module> it = listModule.iterator();
 		while(it.hasNext()) {
 			Module mod = it.next();
-			if(!listMod.contains(mod)) {
+			if(!listMod.contains(mod.getID())) {
 				listNotMod.add(mod);
 			}
 		}

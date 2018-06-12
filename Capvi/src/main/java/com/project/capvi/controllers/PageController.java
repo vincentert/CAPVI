@@ -203,7 +203,6 @@ public class PageController {
 		session.setAttribute("results", results);
 		for(MajorModuleResult e:results) {
 			e.getMajor().getName();
-			
 			System.out.println(e.getMajor().getName()+" "+e.getScore());
 		}
 		return "pages/resultQuestModule";

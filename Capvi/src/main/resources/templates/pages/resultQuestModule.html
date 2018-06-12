@@ -58,8 +58,13 @@
 			<div id="modul" class="tab" style="display:inline">
 				<div class="form_admin" th:each="result:${session.results}">
 					<p th:text="${result.getMajor().getName()}"> Nom du parcour</p>
-					<div>	<p th:each="moduleVNO:${result.getModulesVoulusNonOptionel()}" th:text="${moduleVNO.getName()}"> Module voulus non optionel</p>
-					<div>   <p th:each="moduleNVNO:${result.getModulesNonVoulusNonOptionel()}" th:text="${moduleNVNO.getName()}"> Module non voulus non optionel</p>
+					<select>
+						<option class="score" th:each="moduleVNO:${result.getModulesVoulusNonOptionel()}" th:text="${moduleVNO.getName()}" />
+						<option class="score" th:each="moduleVO:${result.getModulesVoulusOptionel()}" th:text="${moduleVO.getName()}" />
+						<option class="score" th:each="moduleNVO:${result.getModulesNonVoulusOptionel()}" th:text="${moduleNVO.getName()}" />
+						<option class="score" th:each="moduleNVNO:${result.getModulesNonVoulusNonOptionel()}"  th:text="${moduleNVNO.getName()}" />
+					</select>
+
 				</div>
 			</div>
 			
