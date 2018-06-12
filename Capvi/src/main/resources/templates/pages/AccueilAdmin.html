@@ -14,8 +14,8 @@
 	    <div class="widthh" th:fragment="head">
 	        <a th:href="@{/}" class="logo"  ><img width="150px" height="auto" th:src="@{images/isep.png}"></a>
 	        <p th:if="${session.isAdmin}" class="isAdmin">Page Administrateur</p>
-	        <a class="header_button_logout" th:href="@{/logOut}">Deconnexion</a>
-	        <div class="header_span" th:text="${session.username}" ></div>
+	        <a class="logout" th:href="@{/logOut}">Deconnexion</a>
+	        <div class="header_span_autre" th:text="${session.username}" ></div>
 		</div>
 	</header>
 	
@@ -27,7 +27,7 @@
 	</header>
 	
 	<div class="widthh">
-	
+
 		<div id="choix_onglet">
 		    <ul>
 		        <li onClick="ongletAccueilAdmin(1, this)">
@@ -49,14 +49,16 @@
 				<form class="form_admin" action="modifyMajor" method="post" th:each="major : ${session.majors}"  >
 					<input type="hidden" th:value="${major.getID()}" name="majorSelected"/>
 					<input type="submit" th:value="${major.getName()}"/>
+					<div class="button_supp"><p>Supprimer l'entrée</p></div>
 				</form>
 				<a class="header_button" th:href="@{/addMajor}" >Ajouter un parcour</a>
 			</div>
 			
 			<div id="module" class="tabpanel" style="display:none">
-				<form  action="modifyModule" method="post" th:each="module : ${session.modules}"  >
+				<form  class="form_admin"  action="modifyModule" method="post" th:each="module : ${session.modules}"  >
 				 	<input type="hidden" th:value="${module.getID()}" name="moduleSelected"/>
 				 	<input type="submit" th:value="${module.getName()}"/>
+				 	<div class="button_supp"><p>Supprimer l'entrée</p></div>
 				</form>
 				<a class="header_button" th:href="@{/addConcept}" >Ajouter un concept</a>
 			</div>

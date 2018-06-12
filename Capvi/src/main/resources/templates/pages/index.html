@@ -10,9 +10,23 @@
 
 	<header th:if="${session.islogged}">
 	    <div class="widthh" th:fragment="head">
-	        <img class="logo" width="150px" height="auto" th:src="@{images/isep.png}">
-	        <a class="header_button_logout" th:href="@{/logOut}">Deconnexion</a>
-	        <div class="header_span" th:text="${session.username}" ></div>
+	        <a th:href="@{/}" class="logo"  ><img width="150px" height="auto" th:src="@{images/isep.png}"></a>
+	        <p th:if="${session.isAdmin}" class="isAdmin">Page Administrateur</p>
+	        <div class="header_co">
+		        <div class="deco_name">
+			        <a class="header_button_logout" th:href="@{/logOut}">Deconnexion</a>
+			        <p class="header_span" th:text="${session.username}" ></p>
+		        </div>
+		 
+		        <div class="compte">
+		        	<div th:if="${session.isAdmin}">
+		        		<a th:href="@{/AccueilAdmin}">mon compte</a>
+		        	</div>
+		        	<div th:unless="${session.isAdmin}">
+		        		<a th:href="@{/choixquestionnaire}">mon compte</a>
+		        	</div>
+		        </div>
+	        </div>
 		</div>
 	</header>
 	
@@ -53,6 +67,8 @@
             </div>
         </div>
     </div>
+    
+    		        		<button th:href="@{/reponsequestmodul}">mon compte</button>
 
 <footer>
     <div class="widthh">
