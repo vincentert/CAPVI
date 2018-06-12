@@ -39,12 +39,13 @@
 	<div class="widthh">
 		<h1><u>Quel est votre niveau dans les domaines suivants</u></h1>
 
-		<form class="" action='reponsequestmodul' method="post">
+		<form class="" action='resultQuestConcept' method="post">
 				
 				<div class="" th:each="concept : ${concepts}">	
 						<div class="questionnaire">
 							<label th:text="${concept.getName()}"></label> 
-								<input type="range" min="1" max="5" value="3" class="slider" id="NiveauPrérequis" step="1">
+								<input type="range" min="1" max="5" value="3" name="lvlConcept" class="slider" id="NiveauPrérequis" step="1">
+								<input type="hidden" name="conceptID" th:value="${concept.getID()}"/>
 								<div class="legende_echelle">
 									<span class="span1">non abordé</span>
 									<span class="span2">moyen</span>
