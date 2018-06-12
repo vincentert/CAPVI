@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
 	<meta charset="ISO-8859-1">
 	<link rel="stylesheet" type="text/css" th:href="@{/style.css}">
@@ -7,13 +7,22 @@
 	<title>Choix du questionnaire</title>
 </head>
 <body>
-	<header>
-	    <div class="widthh">
+
+	<header th:if="${session.islogged}">
+	    <div class="widthh" th:fragment="head">
+	        <img class="logo" width="150px" height="auto" th:src="@{images/isep.png}">
+	        <div class="header_span" th:text="${session.username}" ></div>
+		</div>
+	</header>
+	
+	<header th:unless="${session.islogged}">
+	    <div class="widthh" th:fragment="head">
 	        <img class="logo" width="150px" height="auto" th:src="@{images/isep.png}">
 	        <a class="header_button" th:href="@{/login}" >Connexion</a>
 	    </div>
 	</header>
 	
+
 	<h1> <u> Choix des Questionnaires </u> </h1>
 	
 	

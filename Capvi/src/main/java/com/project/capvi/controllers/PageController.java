@@ -27,7 +27,7 @@ import com.project.capvi.model.user.UserService;
 
 @Controller
 public class PageController {
-	public static final String LOGGEDUSER="loggedInUser";
+	public static final String LOGGEDUSER="user";
 	@Autowired
 	private UserService userService;
 	@Autowired
@@ -101,6 +101,8 @@ public class PageController {
 			return "pages/login";
 		}
 		session.setAttribute(LOGGEDUSER, user);
+		session.setAttribute("islogged", true);
+		session.setAttribute("username", user.getName());
 		System.out.println("Connected");
 		if(user.isAdmin()) {
 			return "redirect:/AccueilAdmin";

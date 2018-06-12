@@ -10,12 +10,21 @@
   	
 </head>
 <body>
-<header>
-    <div class="widthh">
-        <img class="logo" width="150px" height="auto" th:src="@{images/isep.png}">
-        <a class="header_button" th:href="@{/login}" >Connexion</a>
-    </div>
-</header>
+
+	<header th:if="${session.islogged}">
+	    <div class="widthh" th:fragment="head">
+	        <img class="logo" width="150px" height="auto" th:src="@{images/isep.png}">
+	        <span class="header_span" th:text="${session.username}" ></span>
+		</div>
+	</header>
+	
+	<header th:unless="${session.islogged}">
+	    <div class="widthh" th:fragment="head">
+	        <img class="logo" width="150px" height="auto" th:src="@{images/isep.png}">
+	        <a class="header_button" th:href="@{/login}" >Connexion</a>
+	    </div>
+	</header>
+
     <div class="widthh">
    		<h1><u>Page d'Accueil</u></h1>
         <div>
