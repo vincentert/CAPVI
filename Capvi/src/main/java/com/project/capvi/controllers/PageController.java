@@ -170,7 +170,11 @@ public class PageController {
 	}
 	
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public String verifyLogin(@RequestParam String userId, @RequestParam String password, HttpSession session, Model model) {
+	public String verifyLogin(Model model,@RequestParam(required=false,value="") String userId, @RequestParam(required=false,value="") String password, HttpSession session) {
+		if(userId.equals("")||password.equals("")) {
+			model.addAttribute("erreur","Veuillez remplir les champs");
+			return "pages/login";
+		}
 		User user = userService.loginCustomer(userId, password);
 		if (user==null) {
 			model.addAttribute("loginError", "Error logging in. Please try again");
