@@ -52,6 +52,7 @@
 			<button id="loginButton">Ajouter le concept</button>
 		</form>
 	</div>
+	<div th:if="${session.erreur!=null}" th:text="${session.erreur}"></div>
 	
 	<footer>
 	    <div class="widthh">

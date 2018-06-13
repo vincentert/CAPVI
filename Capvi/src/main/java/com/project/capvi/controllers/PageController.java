@@ -95,7 +95,11 @@ public class PageController {
 	
 	
 	@RequestMapping(value = "/addMajor", method = RequestMethod.POST)
-	public String addMajor(HttpSession session,@RequestParam String name, @RequestParam String description) {
+	public String addMajor(Model model,HttpSession session,@RequestParam(required=false,value="") String name, @RequestParam(required=false,value="") String description) {
+		if(name.equals("")||description.equals("")) {
+			session.setAttribute("erreur", "Veuillez remplir les champs");
+			return "redirect:/addMajor";
+		}
 		User user = (User) session.getAttribute(LOGGEDUSER);
 		if(user==null||!user.isAdmin()) {
 			return "redirect:/";
@@ -117,7 +121,11 @@ public class PageController {
 	}
 	
 	@RequestMapping(value = "/addConcept", method = RequestMethod.POST)
-	public String addConcept(HttpSession session,@RequestParam String name, @RequestParam String description) {
+	public String addConcept(Model model,HttpSession session,@RequestParam(required=false,value="") String name, @RequestParam(required=false,value="") String description) {
+		if(name.equals("")||description.equals("")) {
+			session.setAttribute("erreur", "Veuillez remplir les champs");
+			return "redirect:/addConcept";
+		}
 		User user = (User) session.getAttribute(LOGGEDUSER);
 		if(user==null||!user.isAdmin()) {
 			return "redirect:/";
@@ -128,7 +136,11 @@ public class PageController {
 	}
 	
 	@RequestMapping(value = "/addModule", method = RequestMethod.POST)
-	public String addModule(HttpSession session,@RequestParam String name, @RequestParam String description) {
+	public String addModule(Model model,HttpSession session,@RequestParam(required=false,value="") String name, @RequestParam(required=false,value="") String description) {
+		if(name.equals("")||description.equals("")) {
+			session.setAttribute("erreur", "Veuillez remplir les champs");
+			return "redirect:/addModule";
+		}
 		User user = (User) session.getAttribute(LOGGEDUSER);
 		if(user==null||!user.isAdmin()) {
 			return "redirect:/";
@@ -143,6 +155,7 @@ public class PageController {
 	}
 	@RequestMapping(value = "/AccueilAdmin", method = RequestMethod.GET)
 	public String verifAdmin(HttpSession session) {
+		session.removeAttribute("erreur");
 		User user = (User) session.getAttribute(LOGGEDUSER);
 		if(user!=null&&user.isAdmin()) {
 			session.setAttribute("majors", majorService.getAllMajors());

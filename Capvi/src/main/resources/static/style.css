@@ -182,7 +182,9 @@ header{
     margin-left: 10px;
 }
 
-
+.err {
+	color: red;
+}
 
 .block1{
     border: #0061A1 solid 2px;
