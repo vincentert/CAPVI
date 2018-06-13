@@ -57,31 +57,38 @@
 		<div id="tabconten">
 			<div id="modul" class="tab" style="display:inline">
 				<div class="form_admin" th:each="result:${session.results}">
-					<p th:text="${result.getMajor().getName()}"> Nom du parcour</p>
-					<select>
-						<option class="score" th:each="moduleVNO:${result.getModulesVoulusNonOptionel()}" th:text="${moduleVNO.getName()}" />
-						<option class="score" th:each="moduleVO:${result.getModulesVoulusOptionel()}" th:text="${moduleVO.getName()}" />
-						<option class="score" th:each="moduleNVO:${result.getModulesNonVoulusOptionel()}" th:text="${moduleNVO.getName()}" />
-						<option class="score" th:each="moduleNVNO:${result.getModulesNonVoulusNonOptionel()}"  th:text="${moduleNVNO.getName()}" />
-					</select>
+					<p th:text="${result.getMajor().getName()}" > Nom du parcours</p>
+					<div th:if="${result.getModulesVoulusNonOptionel() != null || result.getModulesVoulusOptionel() != null  || result.getModulesNonVoulusOptionel() != null || result.getModulesNonVoulusNonOptionel()!=null}">
+						<select class="score">
+							<option class="o1" th:each="moduleVNO:${result.getModulesVoulusNonOptionel()}" th:text="${moduleVNO.getName()}" />
+							<option class="o2" th:each="moduleVO:${result.getModulesVoulusOptionel()}" th:text="${moduleVO.getName()}" />
+							<option class="o3" th:each="moduleNVO:${result.getModulesNonVoulusOptionel()}" th:text="${moduleNVO.getName()}" />
+							<option class="o4" th:each="moduleNVNO:${result.getModulesNonVoulusNonOptionel()}"  th:text="${moduleNVNO.getName()}" />
+						</select>
+					</div>
 
 				</div>
 			</div>
 			
 			<div id="prere" class="tab" style="display:none">
-				<div th:each="result:${session.results2}">
-					<p th:text="${result.getMajor().getName()}"> Nom du parcour</p>
-					<p th:text="${result.getScore()}"> Score</p>
-					<p th:each="moduleV:${result.getModulesVert()}" th:text="${moduleV.getName()}">Module Vert</p>
-					<p th:each="moduleO:${result.getModulesOrange()}" th:text="${moduleO.getName()}">Module Orange</p>
-					<p th:each="moduleR:${result.getModulesRouge()}" th:text="${moduleR.getName()}">Module Rouge</p>
+				
+				<div class="form_parcours_select" th:each="result:${session.results2}">
+					<div class="selects_parcours">
+						<p th:text="${result.getMajor().getName()}"> Nom du parcours</p>
+							<select class="score">
+								<option class="o1" th:each="moduleV:${result.getModulesVert()}" th:text="${moduleV.getName()}">Module Vert</p>
+								<option class="o3"  th:each="moduleO:${result.getModulesOrange()}" th:text="${moduleO.getName()}">Module Orange</p>
+								<option class="o4"  th:each="moduleR:${result.getModulesRouge()}" th:text="${moduleR.getName()}">Module Rouge</p>
+							</select>
+							<select class="score">	
+								<option class="o1" th:each="conceptV:${result.getConceptsVert()}" th:text="${conceptV.getName()}">Module Vert</p>
+								<option class="o3"  th:each="conceptO:${result.getConceptsOrange()}" th:text="${conceptO.getName()}">Module Orange</p>
+								<option class="o4"  th:each="conceptR:${result.getConceptsRouge()}" th:text="${conceptR.getName()}">Module Rouge</p>
+							</select>
+					</div>
+				</div>
 			</div>
-
-			</div>
-		  
 		</div>
-		
-
 	</div>
 	
 	<footer>

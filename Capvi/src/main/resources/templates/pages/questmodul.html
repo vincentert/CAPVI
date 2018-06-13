@@ -44,8 +44,13 @@
 				<div th:each="module : ${modules}">
 					<div class="questionnaire">
 						<label th:text=${module.getName()}></label> 
-							<input type="range" min="1" max="3" value="1" class="slider" id="choixModule" name="choixModule" step="1">
+							<input type="range" min="1" max="3" value="2" class="slider" id="choixModule" name="choixModule" step="1">
 							<input type="hidden" name="moduleID" th:value="${module.getID()}"/>
+							<div class="legende_echelle">
+								<span class="span1">non</span>
+								<span class="span2">nsp</span>
+								<span class="span3">oui</span>
+							</div>
 					</div>
 				</div>
 			</div>

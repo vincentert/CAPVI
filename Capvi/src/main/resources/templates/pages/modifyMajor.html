@@ -38,31 +38,25 @@
 	</header>
 	
 	<div class="widthh">
-		<p th:text="${major.getName()}" />
-		<div th:each="moduleB : ${modulesBelong}"
-			th:text="${moduleB.getName()}"></div>
+		<h1><u><p th:text="${major.getName()}" /></u></h1>
 
-		<form action="modifyMajor3" method="post">
-			<input th:each="moduleB : ${modulesBelong}"
-				th:text="${moduleB.getName()}" type="checkbox"
-				th:value="${moduleB.getID()}" name="toDelete" /> <input
-				type="hidden" th:value="${major.getID()}" name="majorSelected" /> <input
-				type="submit" value="Supprimer" />
+		<form class="test" action="modifyMajor3" method="post">
+			<input class="test" th:each="moduleB : ${modulesBelong}" th:text="${moduleB.getName()}" type="checkbox"	th:value="${moduleB.getID()}" name="toDelete" /> 
+			<input type="hidden" th:value="${major.getID()}" name="majorSelected" /><br>
+				<input class="button_modify" type="submit" value="Supprimer" />
 		</form>
 
 
 
-		<p>Liste des modules qui ne sont pas ratachés au parcours</p>
-		<form action="modifyMajor2" method="post">
+		<h2><u>Liste des modules qui ne sont pas ratachés au parcours</p></u></h2>
+		<form class="test"action="modifyMajor2" method="post">
 			<div th:each="moduleNB : ${modulesNotBelong}">
-				<input th:text="${moduleNB.getName()}" type="checkbox"
-					th:value="${moduleNB.getID()}" name="toModify" /> <input
-					type="checkbox" name="optionModule" th:value="${moduleNB.getID()}"
-					)>optionel</input>
+				<input th:text="${moduleNB.getName()}" type="checkbox" th:value="${moduleNB.getID()}" name="toModify" />
+				<input type="checkbox" name="optionModule" th:value="${moduleNB.getID()}">optionel</input>
 			</div>
 
 			<input type="hidden" th:value="${major.getID()}" name="majorSelected" />
-			<input type="submit" value="Ajouter" />
+			<input class="button_modify"	 type="submit" value="Ajouter" />
 		</form>
 		
 		<a class="header_button" th:href="@{/AccueilAdmin}">Retour à l'accueil administrateur</a>

@@ -29,9 +29,9 @@ public class MajorModuleResult implements Serializable{
 		this.modulesNonOptionel=modulesNonOptionel;
 		this.score=score;
 		this.modulesVoulusOptionel=modulesVoulusOptionel;
-		this.modulesVoulusNonOptionel=modulesVoulusOptionel;
-		this.modulesNonVoulusOptionel=modulesVoulusOptionel;
-		this.modulesNonVoulusNonOptionel=modulesVoulusOptionel;
+		this.modulesVoulusNonOptionel=modulesVoulusNonOptionel;
+		this.modulesNonVoulusOptionel=modulesNonVoulusOptionel;
+		this.modulesNonVoulusNonOptionel=modulesNonVoulusNonOptionel;
 	}
 
 	public List<Module> getModulesVoulusOptionel() {

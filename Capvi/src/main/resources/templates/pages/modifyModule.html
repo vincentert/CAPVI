@@ -37,36 +37,24 @@
 	    </div>
 	</header>
 	<div class="widthh">
-		<p th:text="${module.getName()}" />
-		<div th:each="concept : ${conceptsBelong}"
-			th:text="${concept.getName()}"></div>
+		<h1><u><p th:text="${module.getName()}" /></u></h1>
 
-		<form action="modifyModule3" method="post">
-			<input th:each="conceptA : ${conceptsBelong}"
-				th:text="${conceptA.getName()}" type="checkbox"
-				th:value="${conceptA.getID()}" name="toDelete" /> <input
-				type="hidden" th:value="${module.getID()}" name="moduleSelected" />
-
-			<input type="submit" value="Supprimer" />
+		<form class="test" action="modifyModule3" method="post">
+			<input th:each="conceptA : ${conceptsBelong}" th:text="${conceptA.getName()}" type="checkbox" th:value="${conceptA.getID()}" name="toDelete"/>
+			<input type="hidden" th:value="${module.getID()}" name="moduleSelected" /><br>
+			<input class="button_modify" type="submit" value="Supprimer" />
 		</form>
 
-
-
-		<p>Liste des concepts qui ne sont pas rattachés au module</p>
-		<form action="modifyModule2" method="post">
-
+		<h2><u>Liste des concepts qui ne sont pas rattachés au module</u></h2>
+		
+		<form class="test2" action="modifyModule2" method="post">
 			<div th:each="conceptNB : ${conceptsNotBelong}">
-				<input th:text="${conceptNB.getName()}" type="checkbox"
-					th:value="${conceptNB.getID()}" name="toModify" /> <input
-					type="range" min="1" max="5" value="3" class="slider"
-					id="NiveauPrérequis" name="nivAtt" step="1">
+				<input th:text="${conceptNB.getName()}" type="checkbox" th:value="${conceptNB.getID()}" name="toModify" /> 
+				<input class="test_range" type="range" min="1" max="5" value="3"  id="NiveauPrérequis" name="nivAtt" step="1">
 			</div>
 
-
-
-
 			<input type="hidden" th:value="${module.getID()}"
-				name="moduleSelected" /> <input type="submit" value="Ajouter" />
+				name="moduleSelected" /> <input class="button_modify" type="submit" value="Ajouter" />
 		</form>
 		
 		<a class="header_button" th:href="@{/AccueilAdmin}">Retour à l'accueil administrateur</a>

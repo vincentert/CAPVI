@@ -49,7 +49,7 @@
 				<form class="form_admin" action="modifyMajor" method="post" th:each="major : ${session.majors}"  >
 					<input type="hidden" th:value="${major.getID()}" name="majorSelected"/>
 					<input type="submit" th:value="${major.getName()}"/>
-					<div class="button_supp"><p>Supprimer l'entrée</p></div>
+<!-- 					<div class="button_supp"><p>Supprimer l'entrée</p></div> -->
 				</form>
 				<a class="header_button" th:href="@{/addMajor}" >Ajouter un parcours</a>
 			</div>
@@ -58,16 +58,17 @@
 				<form  class="form_admin"  action="modifyModule" method="post" th:each="module : ${session.modules}"  >
 				 	<input type="hidden" th:value="${module.getID()}" name="moduleSelected"/>
 				 	<input type="submit" th:value="${module.getName()}"/>
-				 	<div class="button_supp"><p>Supprimer l'entrée</p></div>
+<!-- 				 	<div class="button_supp"><p>Supprimer l'entrée</p></div> -->
 				</form>
 				<a class="header_button" th:href="@{/addModule}" >Ajouter un module</a>
 			</div>
 						
 			<div id="prerequi" class="tabpanel" style="display:none">
-				<form  action="modifyModule" method="post" th:each="concept : ${session.concepts}"  >
+				<div class="form_admin" th:each="concept : ${session.concepts}"  >
 				 	<input type="hidden" th:value="${concept.getID()}" name="conceptSelected"/>
 				 	<input type="submit" th:value="${concept.getName()}"/>
-				</form>
+<!-- 				 	<div class="button_supp"><p>Supprimer l'entrée</p></div> -->
+				</div>
 				<a class="header_button" th:href="@{/addConcept}" >Ajouter un prérequis</a>
 			</div>
 			
